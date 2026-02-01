@@ -1,0 +1,271 @@
+.header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom right, #000000, #0f2c3e, #001f3f);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #ffea00;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.header img {
+  width: 150px;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.logo:hover {
+  color: #ffea00;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #f1f1f1; /* Oddiy holatda matn rangi oq */
+  text-decoration: none;
+  font-weight: 600; /* Matnni biroz qalinlashtirdim */
+  font-size: 18px;
+  position: relative;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px; /* Harflar orasidagi masofani biroz kengaytirdim */
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px; /* Chiziqni biroz qalinlashtirdim */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px; /* Chiziqni biroz pastga tushirdim */
+  background: linear-gradient(90deg, #ffcc00, #ffea00); /* Chiziqqa gradient rang qo‘shdim */
+  transition: width 0.3s ease, transform 0.3s ease;
+  border-radius: 2px; /* Chiziqning burchaklarini biroz yumalotirdim */
+}
+
+.nav-links a:hover {
+  color: #ffea00; /* Hoverda matn rangi sariq bo‘ladi */
+  transform: translateY(-2px); /* Hoverda biroz yuqoriga ko‘tariladi */
+}
+
+.nav-links a:hover::after {
+  width: 70%; /* Chiziq uzunligini 70% qildim, shunda matn uzunligiga mos keladi */
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.header a:hover {
+  color: yellow;
+  transform: scale(1.05);
+}
+
+@keyframes headerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 1200px */
+@media (max-width: 1200px) {
+  .header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 30px;
+  }
+
+  .header img {
+    width: 140px;
+  }
+}
+
+/* 1024px */
+@media (max-width: 1024px) {
+  .header {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .nav-links {
+    gap: 25px;
+  }
+
+  .header img {
+    width: 130px;
+  }
+}
+
+/* 768px */
+@media (max-width: 768px) {
+  .header {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  .header img {
+    width: 120px;
+  }
+
+  .header .logo {
+    width: 160px;
+  }
+}
+
+/* 625px */
+@media (max-width: 625px) {
+  .header {
+    max-width: 625px;
+    margin: 0 auto;
+    height: auto;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding: 0;
+  }
+
+  .header img {
+width: 100px;
+  }
+
+  .nav-container {
+    width: 100%;
+  }
+
+  .nav-links {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: linear-gradient(to bottom right, #000000, #0f2c3e, #001f3f);
+    z-index: 999;
+    padding: 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    color: #f1f1f1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    flex: 1;
+    text-align: center;
+    font-weight: 500; /* Kichik ekranlarda matnni biroz yupqalashtirdim */
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+    background: linear-gradient(90deg, #ffcc00, #ffea00);
+    transition: width 0.3s ease, transform 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .nav-links a:hover {
+    color: #ffea00;
+    transform: translateY(-2px);
+  }
+
+  .nav-links a:hover::after {
+    width: 50%;
+  }
+}
+
+/* 480px */
+@media (max-width: 480px) {
+  .header {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .header img {
+    width: 90px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+}
+
+/* 375px */
+@media (max-width: 375px) {
+  .header {
+    max-width: 375px;
+    margin: 0 auto;
+    padding: 8px;
+  }
+
+  .header img {
+    width: 80px;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+}

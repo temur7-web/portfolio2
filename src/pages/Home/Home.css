@@ -1,0 +1,749 @@
+/* Umumiy stillar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Banner konteyneri */
+.banner-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a4a); /* Yumshoq fon gradienti */
+}
+
+/* Gradient fon */
+.gradient-bg {
+  margin-top: 100px;
+}
+
+.banner-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+  animation: shimmer 8s linear infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Banner ichidagi ikki ustunli tarkib */
+.banner-content-two-columns {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px); /* Shisha effekti */
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  max-width: 1000px;
+  width: 90%; /* Telefonlarda kenglikni optimallashtirish */
+  gap: 40px;
+}
+
+/* Profil rasmi konteyneri */
+.profile-container {
+  flex: 0 0 auto;
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #ffcc00;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Matnli ma'lumotlar */
+.text-info {
+  flex: 1;
+  color: white;
+}
+
+.text-info h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.text-info p {
+  font-size: 18px;
+  margin: 10px 0;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Texnologiya ikonkalari konteyneri */
+.home-tech-icons-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.home-tech-icon {
+  text-align: center;
+}
+
+.home-tech-icon svg {
+  font-size: 34px;
+  margin: 0 5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.home-tech-icon:hover svg {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+}
+
+.home-tech-icon p {
+  margin-top: 8px;
+  font-size: 16px;
+  color: white;
+}
+
+/* Texnologiya ikonkalari uchun maxsus ranglar */
+.home-html-icon { color: #e34f26; } /* HTML5 */
+.home-html-icon:hover { color: #e34f26; }
+.home-css-icon { color: #264de4; } /* CSS3 */
+.home-css-icon:hover { color: #264de4; }
+.home-js-icon { color: #f7df1e; } /* JavaScript */
+.home-js-icon:hover { color: #f7df1e; }
+.home-react-icon { color: #61dafb; } /* React */
+.home-react-icon:hover { color: #61dafb; }
+.home-node-icon { color: #68a063; } /* Node.js */
+.home-node-icon:hover { color: #68a063; }
+.home-mongodb-icon { color: #47A248; } /* MongoDB */
+.home-mongodb-icon:hover { color: #47A248; }
+.home-github-icon { color: #181717; } /* GitHub */
+.home-github-icon:hover { color: #181717; }
+.home-postgres-icon { color: #336791; } /* PostgreSQL */
+.home-postgres-icon:hover { color: #336791; }
+.home-postman-icon { color: #FF6C37; } /* Postman */
+.home-postman-icon:hover { color: #FF6C37; }
+.home-swagger-icon { color: #19b6b5; } /* Swagger */
+.home-swagger-icon:hover { color: #19b6b5; }
+
+/* Tugmalar konteyneri */
+.cta-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ffcc00, #ffea00);
+  color: #001f3f;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  width: 100%; /* Tugma to‘liq kenglikda bo‘lsin */
+  max-width: 200px; /* Maksimal kenglik */
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(45deg, #fff700, #ffc400);
+}
+
+/* Kartalar bo‘limi */
+.card-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.card-btn {
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  color: #001f3f;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  width: 100%; /* Tugma to‘liq kenglikda bo‘lsin */
+  max-width: 150px; /* Maksimal kenglik */
+  text-align: center;
+}
+
+.card-btn:hover {
+  background-color: #ffd700;
+  transform: translateY(-3px);
+}
+
+/* Span elementlari uchun stil */
+span {
+  color: gold;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+span:hover {
+  color: white;
+  text-shadow: 0 0 10px gold;
+}
+
+/* Animatsiya */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sertifikatlar bo‘limi */
+.certificate-section {
+  padding: 40px;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.certificate-section h2 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.certificate-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.certificate-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+.certificate-card:hover {
+  transform: translateY(-10px);
+}
+
+.certificate-img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.certificate-content h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.certificate-info p {
+  font-size: 14px;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.certificate-learned p {
+  font-size: 13px;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+/* Qilgan saytlarim bo‘limi */
+.projects-section {
+  padding: 40px;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.projects-section h2 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-img {
+  width: 140px;
+  height: 140px; /* Doira shaklini saqlash uchun */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Responsive dizayn */
+@media (max-width: 1024px) {
+  .banner-content-two-columns {
+    padding: 30px;
+    max-width: 90%;
+  }
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .text-info h1 {
+    font-size: 36px;
+  }
+
+  .text-info p {
+    font-size: 16px;
+  }
+
+  .home-tech-icons-container {
+    gap: 30px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 250px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    max-width: 180px;
+  }
+
+  .card-btn {
+    padding: 8px 18px;
+    font-size: 13px;
+    max-width: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-content-two-columns {
+    flex-direction: column;
+    padding: 25px;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .profile-img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .text-info h1 {
+    font-size: 32px;
+  }
+
+  .text-info p {
+    font-size: 14px;
+  }
+
+  .home-tech-icons-container {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 30px;
+  }
+
+  .home-tech-icon p {
+    font-size: 14px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 30px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 220px;
+  }
+
+  .btn {
+    padding: 8px 18px;
+    font-size: 13px;
+    max-width: 160px;
+  }
+
+  .card-btn {
+    padding: 7px 16px;
+    font-size: 12px;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-content-two-columns {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .profile-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .text-info h1 {
+    font-size: 28px;
+  }
+
+  .text-info p {
+    font-size: 13px;
+  }
+
+  .home-tech-icons-container {
+    gap: 15px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 28px;
+  }
+
+  .home-tech-icon p {
+    font-size: 13px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 20px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 200px;
+  }
+
+  .project-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .btn {
+    padding: 7px 16px;
+    font-size: 12px;
+    max-width: 140px;
+  }
+
+  .card-btn {
+    padding: 6px 14px;
+    font-size: 11px;
+    max-width: 110px;
+  }
+}
+
+@media (max-width: 390px) {
+  .banner-content-two-columns {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .text-info h1 {
+    font-size: 24px;
+  }
+
+  .text-info p {
+    font-size: 12px;
+  }
+
+  .home-tech-icons-container {
+    gap: 12px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 26px;
+  }
+
+  .home-tech-icon p {
+    font-size: 12px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 15px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 180px;
+  }
+
+  .project-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .btn {
+    padding: 6px 14px;
+    font-size: 11px;
+    max-width: 130px;
+  }
+
+  .card-btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 320px) {
+  .banner-content-two-columns {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .text-info h1 {
+    font-size: 20px;
+  }
+
+  .text-info p {
+    font-size: 11px;
+  }
+
+  .home-tech-icons-container {
+    gap: 10px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 24px;
+  }
+
+  .home-tech-icon p {
+    font-size: 11px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 10px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 160px;
+  }
+
+  .project-img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    max-width: 120px;
+  }
+
+  .card-btn {
+    padding: 4px 10px;
+    font-size: 9px;
+    max-width: 90px;
+  }
+}
+
+@media (max-width: 280px) {
+  .banner-content-two-columns {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .text-info h1 {
+    font-size: 18px;
+  }
+
+  .text-info p {
+    font-size: 10px;
+  }
+
+  .home-tech-icons-container {
+    gap: 8px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 22px;
+  }
+
+  .home-tech-icon p {
+    font-size: 10px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 8px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 140px;
+  }
+
+  .project-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .btn {
+    padding: 4px 10px;
+    font-size: 9px;
+    max-width: 110px;
+  }
+
+  .card-btn {
+    padding: 3px 8px;
+    font-size: 8px;
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 200px) {
+  .banner-content-two-columns {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .text-info h1 {
+    font-size: 16px;
+  }
+
+  .text-info p {
+    font-size: 9px;
+  }
+
+  .home-tech-icons-container {
+    gap: 6px;
+  }
+
+  .home-tech-icon svg {
+    font-size: 20px;
+  }
+
+  .home-tech-icon p {
+    font-size: 9px;
+  }
+
+  .card-section, .certificate-section, .projects-section {
+    padding: 6px;
+  }
+
+  .card, .certificate-card, .project-card {
+    width: 120px;
+  }
+
+  .project-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .btn {
+    padding: 3px 8px;
+    font-size: 8px;
+    max-width: 100px;
+  }
+
+  .card-btn {
+    padding: 2px 6px;
+    font-size: 7px;
+    max-width: 70px;
+  }
+}

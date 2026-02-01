@@ -1,0 +1,22 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom right, #000000, #0f2c3e, #001f3f);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.4);
+}
+
+.bottom-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.bottom-nav a.active {
+  color: #ffea00;
+}

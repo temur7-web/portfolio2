@@ -1,0 +1,50 @@
+/* src/companents/SkyBar/SkyBar.css */
+.skybar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: #222;
+  color: white;
+  position: relative;
+  z-index: 100;
+}
+
+.skybar-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.skybar-menu li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.skybar-menu li a:hover {
+  color: #ffb400;
+}
+
+.lang-float {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200; /* yuqorida bo‘lishi uchun */
+}
+
+.lang-buttons button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #444;
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.lang-buttons button:hover {
+  background: #ffb400;
+}

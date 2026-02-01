@@ -1,0 +1,352 @@
+/* Umumiy konteyner stilizatsiyasi va nozik fon effekti */
+.about-container {
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Chuqurlik uchun nozik fon qatlami qo'shish */
+.about-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* Tarkib o'rami */
+.about-content {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  max-width: 1100px;
+  align-items: center;
+  width: 100%;
+  color: white;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.05); /* Shisha effekti */
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Profil rasmi stilizatsiyasi va yorqin chegara effekti */
+.profile-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #ffcc00;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); /* Yorqinlik effekti */
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Profil rasmi uchun pulsatsiya animatsiyasi */
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+  50% { box-shadow: 0 0 30px rgba(255, 204, 0, 0.8); }
+  100% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+}
+
+/* Matn bo'limi stilizatsiyasi */
+.about-text {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif; /* Zamonaviyroq shrift */
+}
+
+/* Sarlavha stilizatsiyasi va gradient matn effekti */
+.about-text h1 {
+  font-size: 48px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #ffcc00, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  animation: slideIn 1s ease-out;
+}
+
+/* Sarlavha uchun siljish animatsiyasi */
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Kirish paragrafi (kattaroq matn) */
+.intro {
+  font-size: 22px;
+  line-height: 1.8;
+  text-align: left;
+  margin-bottom: 25px;
+  animation: fadeInText 1.5s ease-in-out;
+}
+
+/* Tavsif paragrafi (biroz kichikroq matn) */
+.description {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: left;
+  margin-bottom: 25px;
+  opacity: 0.9;
+  animation: fadeInText 1.8s ease-in-out;
+}
+
+/* Qo'shimcha ma'lumotlar (ikkinchi darajali tafsilotlar uchun kichikroq matn) */
+.additional-info {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  animation: fadeInText 2s ease-in-out;
+}
+
+/* Men haqimda bo'limi uchun yangi qo'shilgan qism */
+.about-section {
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffcc00;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: left;
+  margin-bottom: 15px;
+  animation: fadeInText 1.5s ease-in-out;
+}
+
+/* Oxirgi paragraf uchun qo'shimcha stil */
+.final-text {
+  font-style: italic;
+  color: #ffcc00;
+}
+
+/* Matn uchun paydo bo'lish animatsiyasi */
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Asosiy ma'lumotlar uchun yorliqlar (masalan, "Ta'lim", "Manzil") */
+.label {
+  font-size: 20px;
+  color: #ffcc00;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+/* Belgilangan matn (masalan, to'liq ism uchun) */
+.highlight {
+  font-size: 26px;
+  background: linear-gradient(90deg, #ffcc00, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Pastki chiziq animatsiyasi bilan havola stilizatsiyasi */
+.about-text a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.about-text a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.about-text a:hover::after {
+  width: 100%;
+}
+
+.about-text a:hover {
+  color: #ffffff;
+}
+
+/* Texnologiya ikonkalari konteyneri */
+.about-tech-icons {
+  display: flex;
+  gap: 10px; /* Bo‘shliqni saqlaymiz */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: flex-start; /* Ikonkalarni chapga joylashtiramiz */
+  flex-wrap: wrap; /* Kichik ekranlarda ikonlar qatorlarga bo‘linadi */
+}
+
+/* Texnologiya ikonkalari stilizatsiyasi */
+.about-tech-icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Ikonkalarning orasidagi bo‘shliqni saqlaymiz */
+  justify-content: flex-start;
+}
+
+.about-tech-icon {
+  font-size: 34px;
+  margin: 0 5px;
+  transition: transform 0.1s ease, color 0.3s ease;
+  
+}
+
+.about-tech-icon svg {
+  font-size: 34px;
+  margin: 0 5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effektlari */
+.about-tech-icon:hover svg {
+  transform: scale(1.9); /* Ikonkani 1.3 barobar kattalashtiramiz */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Yorqinlik effekti qo‘shamiz */
+}
+
+/* Texnologiya ikonkalari uchun maxsus ranglar */
+.about-html-icon { color: #e34f26; } /* HTML5 */
+.about-html-icon:hover { color: #ff6347; } /* Hover rangi (yorqinroq qizil) */
+.about-css-icon { color: #264de4; } /* CSS3 */
+.about-css-icon:hover { color: #4169e1; } /* Hover rangi (yorqinroq ko‘k) */
+.about-js-icon { color: #f7df1e; } /* JavaScript */
+.about-js-icon:hover { color: #ffee58; } /* Hover rangi (yorqinroq sariq) */
+.about-react-icon { color: #61dafb; } /* React */
+.about-react-icon:hover { color: #87e0fb; } /* Hover rangi (yorqinroq ko‘k) */
+.about-node-icon { color: #68a063; } /* Node.js */
+.about-node-icon:hover { color: #8bc34a; } /* Hover rangi (yorqinroq yashil) */
+.about-github-icon { color: #181717; } /* GitHub */
+.about-github-icon:hover { color: #444444; } /* Hover rangi (yorqinroq kulrang) */
+.about-mongodb-icon { color: #47A248; } /* MongoDB */
+.about-mongodb-icon:hover { color: #66bb6a; } /* Hover rangi (yorqinroq yashil) */
+.about-postgres-icon { color: #336791; } /* PostgreSQL */
+.about-postgres-icon:hover { color: #4682b4; } /* Hover rangi (yorqinroq ko‘k) */
+.about-postman-icon { color: #FF6C37; } /* Postman */
+.about-postman-icon:hover { color: #ff8c66; } /* Hover rangi (yorqinroq to‘q sariq) */
+.about-swagger-icon { color: #19b6b5; } /* Swagger */
+.about-swagger-icon:hover { color: #4dd0cf; } /* Hover rangi (yorqinroq ko‘k-yashil) */
+
+/* Loyihalar uchun ro'yxat stilizatsiyasi */
+ul {
+  list-style-type: disc;
+  margin-left: 25px;
+  margin-top: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+li:hover {
+  transform: translateX(10px);
+}
+
+/* Ijtimoiy tarmoqlar havolalari stilizatsiyasi */
+.social-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.social-icon {
+  font-size: 40px;
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #ffcc00;
+  transform: scale(1.3) rotate(15deg);
+}
+
+/* Moslashuvchan dizayn */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: left;
+    padding: 20px;
+  }
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-text h1 {
+    font-size: 36px;
+  }
+
+  .intro {
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .description {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .additional-info {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .about-text p {
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  .highlight {
+    font-size: 22px;
+  }
+
+  .about-tech-icon svg {
+    font-size: 28px; /* Kichik ekranlarda ikonlar kichrayadi */
+  }
+
+  .about-tech-icons {
+    gap: 8px; /* Kichik ekranlarda bo‘shliq kamayadi */
+  }
+
+  .social-icon {
+    font-size: 30px; /* Ijtimoiy tarmoq ikonlari kichrayadi */
+  }
+}

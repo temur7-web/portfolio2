@@ -1,0 +1,279 @@
+/* Asosiy footer konteyneri */
+.footer-container {
+    background: #121212; /* To'q qora fon */
+    color: #fff;
+    padding: 60px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Fon uchun nozik qatlam */
+  .footer-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    z-index: 0;
+  }
+  
+  /* Footer uchun umumiy o'rash */
+  .footer-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05); /* Shisha effekti */
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Footer Info - Shaxsiy ma'lumotlar */
+  .footer-info {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .footer-info h4 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #ffcc00, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .footer-info .title {
+    font-size: 1.2rem;
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  
+  .footer-info p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .footer-info a {
+    color: #ffcc00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-info a:hover {
+    color: #ffffff;
+  }
+  
+  /* Profil rasmi uslubi */
+  .profile-im {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 4px solid #ffcc00;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    animation: pulse 2s infinite ease-in-out;
+  }
+  
+  /* Profil rasmi uchun pulsatsiya animatsiyasi */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(255, 204, 0, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+  }
+  
+  /* Ijtimoiy tarmoqlar */
+  .footer-links {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .footer-links h5,
+  .footer-extra h5 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .footer-links a,
+  .footer-extra a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 1rem;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .footer-links a:hover,
+  .footer-extra a:hover {
+    color: #ffcc00;
+    transform: translateX(10px);
+  }
+  
+  /* Ijtimoiy tarmoqlar va tez havolalar uchun ikonalar */
+  .social-icon,
+  .link-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .footer-links a:hover .social-icon,
+  .footer-extra a:hover .link-icon {
+    transform: rotate(15deg);
+  }
+  
+  /* Ma'lumot ikonlari (telefon, email, manzil) */
+  .info-icon {
+    font-size: 1.2rem;
+    color: #ffcc00;
+  }
+  
+  /* Tez Havolalar */
+  .footer-extra {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Mualliflik huquqi qismi */
+  .footer-copy {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #ccc;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  /* Yuqoriga Qaytish tugmasi */
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #ffcc00, #ff9900);
+    color: #121212;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .back-to-top:hover {
+    background: linear-gradient(90deg, #ffffff, #ffcc00);
+    transform: translateY(-3px);
+  }
+  
+  /* Matnlar uchun kirish animatsiyasi */
+  .footer-info,
+  .footer-links,
+  .footer-extra {
+    animation: fadeInText 1.s ease-in-out;
+  }
+  
+  @keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsiv dizayn */
+  @media screen and (max-width: 768px) {
+    .footer-wrapper {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-info,
+    .footer-links,
+    .footer-extra {
+      flex: 1;
+      min-width: 100%;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .footer-info p,
+    .footer-links a,
+    .footer-extra a {
+      justify-content: center;
+    }
+  
+    .profile-im {
+      margin: 0 auto 15px;
+    }
+  
+    .footer-copy {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
+  /* Kichik ekranlar uchun moslashuv */
+  @media screen and (max-width: 480px) {
+    .footer-container {
+      padding: 40px 20px;
+    }
+  
+    .footer-info h4 {
+      font-size: 1.8rem;
+    }
+  
+    .footer-info .title {
+      font-size: 1rem;
+    }
+  
+    .footer-info p,
+    .footer-links a,
+    .footer-extra a {
+      font-size: 0.9rem;
+    }
+  
+    .social-icon,
+    .link-icon,
+    .info-icon {
+      font-size: 1rem;
+    }
+  
+    .back-to-top {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  }
+
