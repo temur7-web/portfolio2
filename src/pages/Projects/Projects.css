@@ -1,167 +1,211 @@
-/* Umumiy stillar */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* Qorong'i fon */
-    color: #fff; /* Matn rangi oq */
-  }
-  
-  /* Konteyner stillari */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-    text-align: center;
-  }
-  
-  /* Sarlavha (TEMUR) stillari */
-  .container h1 {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 50px;
-    color: #fff;
-    text-transform: uppercase; /* Sarlavhani katta harflarga aylantirish */
-    letter-spacing: 2px; /* Harflar orasidagi masofa */
-  }
-  
-  /* Portfolio grid tizimi */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 qator shaklida */
-    gap: 30px; /* Kartalar orasidagi masofa */
-  }
-  
-  /* Har bir karta stillari */
-  .portfolio-item {
-    background-color: #2a2a2a; /* Kartaning fon rangi */
-    border-radius: 12px; /* Yumaloq burchaklar */
-    padding: 20px;
-    text-align: left;
-    box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soyali effekt */
-    transition: transform 0.3s ease; /* Hover effekti uchun animatsiya */
-  }
-  
-  /* Kartaga hover effekti */
-  .portfolio-item:hover {
-    transform: translateY(-5px); /* Hoverda karta biroz yuqoriga ko'tariladi */
-  }
-  
-  /* Karta ichidagi rasm stillari */
-  .portfolio-image {
-    width: 100%;
-    height: 180px; /* Rasmning balandligi oshirildi */
-    object-fit: cover; /* Rasm kartaga moslashishi uchun */
-    border-radius: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #444; /* Rasmning chetiga nozik chegara */
-  }
-  
-  /* Karta ichidagi sarlavha (h3) stillari */
-  .portfolio-item h3 {
-    font-size: 22px;
-    font-weight: 600;
-    margin: 10px 0;
-    color: #fff;
-  }
-  
-  /* Karta ichidagi tavsif (p) stillari */
-  .portfolio-item p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #ccc;
-    margin: 0 0 15px 0;
-  }
-  
-  /* Men Haqimda bo'limi stillari */
-  .about-me {
-    background-color: #2a2a2a;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-  }
-  
-  .about-me:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Texnologiya ikonkalari stillari */
-  .tech-icons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 15px;
-  }
-  
-  .tech-ic .nml {
-    width: 62px;
-    height: 62px;
-    transition: transform 0.3s ease;
-  }
-  
-  .tech-icons .nml:hover {
-    transform: scale(1.2); /* Hoverda ikonkalarni biroz kattalashtirish */
-  }
-  
-  /* Qo'shimcha ma'lumot stillari */
-  .additional-info {
-    font-size: 13px;
-    color: #999;
-    text-align: left;
-    margin: 5px 0 20px 0;
-    padding: 0 20px;
-    line-height: 1.6;
-    font-style: italic; /* Qo'shimcha ma'lumotni kursiv qilish */
-  }
-  
-  /* Media so'rovlar - turli ekran o'lchamlari uchun moslashuvchanlik */
-  @media (max-width: 1024px) {
-    .portfolio-grid {
-      grid-template-columns: repeat(2, 1fr); /* Planshetlar uchun 2 qator */
-    }
-  
-    .container h1 {
-      font-size: 40px;
-    }
-  
-    .portfolio-image {
-      height: 160px; /* Planshetlarda rasm balandligi biroz kamayadi */
-    }
-  
-    .portfolio-item {
-      padding: 15px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .portfolio-grid {
-      grid-template-columns: 1fr; /* Telefonlar uchun 1 qator */
-    }
-  
-    .container h1 {
-      font-size: 32px;
-    }
-  
-    .portfolio-image {
-      height: 140px; /* Telefonlarda rasm balandligi yanada kamayadi */
-    }
-  
-    .portfolio-item {
-      padding: 12px;
-    }
-  
-    .additional-info {
-      padding: 0 12px;
-      font-size: 12px;
-    }
-  
-    .portfolio-item h3 {
-      font-size: 20px;
-    }
-  
-    .portfolio-item p {
-      font-size: 13px;
-    }
-  }
+/* Projects.css */
+
+.portfolio-premium-wrapper {
+  background: radial-gradient(circle at 0% 0%, #0f172a 0%, #020617 100%);
+  padding: 100px 5%;
+  color: white;
+}
+
+.header-content {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, #00f2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* GRID TIZIMI */
+.elite-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ELITE CARD */
+.elite-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.elite-card:hover {
+  transform: translateY(-12px);
+  border-color: #00f2ff;
+  box-shadow: 0 20px 50px rgba(0, 242, 255, 0.1);
+  background: rgba(30, 41, 59, 0.8);
+}
+
+/* RASM QISMI */
+.elite-img-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.elite-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.elite-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(2, 6, 23, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.elite-card:hover .elite-overlay {
+  opacity: 1;
+}
+
+.visit-link {
+  color: #00f2ff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid #00f2ff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.visit-link:hover {
+  background: #00f2ff;
+  color: #000;
+}
+
+/* DETALLAR QISMI */
+.elite-details {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pro-category {
+  color: #00f2ff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.elite-details h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.elite-details p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* TECH BADGES */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.tech-badge {
+  background: rgba(0, 242, 255, 0.1);
+  color: #00f2ff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* FOOTER BUTTONS */
+.card-footer {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.footer-btn {
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.footer-btn.live {
+  background: #00f2ff;
+  color: #020617;
+  border: none;
+}
+
+.footer-btn.code {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.footer-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .elite-projects-grid { grid-template-columns: 1fr; }
+  .main-title { font-size: 2.2rem; }
+}/* YouTube loyihasi uchun maxsus neon effekt (ixtiyoriy) */
+.elite-card:nth-child(6):hover {
+  border-color: #ff0000;
+  box-shadow: 0 20px 50px rgba(255, 0, 0, 0.2);
+}
+
+.elite-card:nth-child(6) .pro-category {
+  color: #ff0000;
+}
+
+.elite-card:nth-child(6) .footer-btn.live {
+  background: #ff0000;
+  color: white;
+}
+
+.elite-card:nth-child(6) .tech-badge {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+}

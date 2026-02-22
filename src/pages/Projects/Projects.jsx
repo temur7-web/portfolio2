@@ -1,79 +1,105 @@
 import React from 'react';
 import './Projects.css';
+import { FaExternalLinkAlt, FaGithub, FaRocket } from "react-icons/fa";
 
 function Projects() {
+  const eliteProjects = [
+    {
+      id: 1,
+      title: "Uzum Market Clone",
+      category: "E-Commerce / Marketplace",
+      desc: "O'zbekistondagi eng yirik marketplace analogi. To'liq savat tizimi va to'lov turlari integratsiyasi.",
+      img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=2070&auto=format&fit=crop",
+      link: "https://uzum.uz",
+      tech: ["React", "Redux Toolkit", "Node.js"]
+    },{
+  id: 6,
+  title: "YouTube Video Platform",
+  category: "Video Streaming / Entertainment",
+  desc: "Google API orqali ishlovchi video platforma. Qidiruv, kanal ko'rish va yuqori sifatli video pleyer tizimi.",
+  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHJZ6JJuArjMdC5YO29TCAQKN8fEvuPuH7bw&s",
+  link: "https://youtube.com", // Bu yerga o'z loyihangiz linkini qo'ying
+  tech: ["React", "RapidAPI", "Material UI"]
+},
+    {
+      id: 2,
+      title: "Olcha.uz Redesign",
+      category: "E-Store / Tech",
+      desc: "Elektronika do'koni uchun yuqori tezlikdagi interfeys va filterlash tizimi.",
+      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+      link: "https://olcha.uz",
+      tech: ["Next.js", "Tailwind CSS", "PostgreSQL"]
+    },
+    {
+      id: 3,
+      title: "Temu Global Dashboard",
+      category: "Logistics / Global Trade",
+      desc: "Xalqaro savdo va logistika ma'lumotlarini kuzatish uchun murakkab dashboard.",
+      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+      link: "https://temu.com",
+      tech: ["React", "Chart.js", "Firebase"]
+    },
+    {
+      id: 4,
+      title: "Naman.uz Portal",
+      category: "News / Media",
+      desc: "Namangan viloyati uchun maxsus yangiliklar va interaktiv xizmatlar portali.",
+      img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop",
+      link: "https://naman.uz",
+      tech: ["React", "REST API", "Styled Components"]
+    },
+    {
+      id: 5,
+      title: "Tababo Health",
+      category: "Medical / Health-Tech",
+      desc: "Online tibbiy maslahat va shifokorlar qabuliga yozilish platformasi.",
+      img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop",
+      link: "https://tababo.uz",
+      tech: ["React Native", "Socket.io", "MongoDB"]
+    }
+  ];
+
   return (
-    <div className="container">
-      <div className="portfolio-grid">
-        {/* Onlayn Do'kon - Elektronika */}
-        <div className="portfolio-item">
-          <img
-            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Elektronika mahsulotlari"
-            className="portfolio-image"
-          />
-          <h3>Onlayn Do'kon</h3>
-          <p>Elektronika mahsulotlariga ixtisoslashgan e-tijorat platformasi</p>
+    <div className='r'>
+      <div className="portfolio-premium-wrapper">
+        <div className="header-content">
+          <h2 className="main-title">Tanlangan Loyihalar</h2>
+          <p className="subtitle">40 dan ortiq muvaffaqiyatli loyihalar orasidan saralab olinganlari</p>
         </div>
-        <p className="additional-info">
-          Ushbu do'kon zamonaviy elektronika mahsulotlarini taklif qiladi, shu jumladan telefonlar, noutbuklar va aqlli soatlar.
-        </p>
 
-        {/* Onlayn Do'kon - Moda */}
-        <div className="portfolio-item">
-          <img
-            src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Moda kiyimlari"
-            className="portfolio-image"
-          />
-          <h3>Onlayn Do'kon</h3>
-          <p>Eng so'nggi moda tendensiyalari va uslublarni taqdim etuvchi do'kon</p>
-        </div>
-        <p className="additional-info">
-          Moda do'koni sifatida har mavsumda yangi kiyimlar va aksessuarlar taqdim etiladi.
-        </p>
+        <div className="elite-projects-grid">
+          {eliteProjects.map((pro) => (
+            <div className="elite-card" key={pro.id}>
+              <div className="elite-img-container">
+                <img src={pro.img} alt={pro.title} />
+                <div className="elite-overlay">
+                  <a href={pro.link} target="_blank" rel="noopener noreferrer" className="visit-link">
+                    Saytni ko'rish <FaExternalLinkAlt />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="elite-details">
+                <span className="pro-category">{pro.category}</span>
+                <h3>{pro.title}</h3>
+                <p>{pro.desc}</p>
+                
+                <div className="tech-stack">
+                  {pro.tech.map((t, i) => <span key={i} className="tech-badge">{t}</span>)}
+                </div>
 
-        {/* Onlayn Do'kon - Kitoblar */}
-        <div className="portfolio-item">
-          <img
-            src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Raqamli kutubxona"
-            className="portfolio-image"
-          />
-          <h3>Onlayn Do'kon</h3>
-          <p>Keng kitoblar to'plamini taklif qiluvchi raqamli kutubxona</p>
+                <div className="card-footer">
+                   <a href={pro.link} target="_blank" rel="noopener noreferrer" className="footer-btn live">
+                     <FaRocket /> Live Demo
+                   </a>
+                   <button className="footer-btn code">
+                     <FaGithub /> Code
+                   </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <p className="additional-info">
-          Dunyo adabiyotidagi eng yaxshi kitoblar, shu jumladan klassika va zamonaviy asarlar.
-        </p>
-
-        {/* Onlayn Do'kon - Mebel */}
-        <div className="portfolio-item">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Zamonaviy mebel"
-            className="portfolio-image"
-          />
-          <h3>Onlayn Do'kon</h3>
-          <p>Zamonaviy mebel kolleksiyalari uchun uy dekor do'koni</p>
-        </div>
-        <p className="additional-info">
-          Minimalistik va zamonaviy uslubdagi mebellar, har qanday uy uchun mos.
-        </p>
-
-        {/* Onlayn Do'kon - Sport anjomlari */}
-        <div className="portfolio-item">
-          <img
-            src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Sport anjomlari"
-            className="portfolio-image"
-          />
-          <h3>Onlayn Do'kon</h3>
-          <p>Sport anjomlari va jihozlari uchun maxsus do'kon</p>
-        </div>
-        <p className="additional-info">
-          Sportchilar uchun barcha turdagi jihozlar, shu jumladan sport kiyimlari va aksessuarlar.
-        </p>
       </div>
     </div>
   );

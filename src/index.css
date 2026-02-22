@@ -68,14 +68,9 @@ button:focus-visible {
 } */
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(-45deg, #000000, #0f2c3e, #001f3f);
-  background-size: 400% 400%;
-  animation: animatedBG 15s ease infinite;
-  min-height: 100vh;
-  color: white;
+
+    background: rgba(2, 6, 23, 0.85);
+
 }
 
 @keyframes animatedBG {
@@ -91,8 +86,5 @@ body {
 }
 
 
-.container{
-  margin-top: 100px;
-}
 
 

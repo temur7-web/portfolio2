@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import { MdOutlineAlternateEmail } from "react-icons/md";
-import { FaPhoneVolume } from "react-icons/fa6";
+import { FaPhoneVolume, FaInstagram, FaLinkedin, FaTelegramPlane, FaFacebook } from "react-icons/fa";
 
 function Contact() {
   const [name, setName] = useState('');
@@ -17,75 +17,64 @@ function Contact() {
   };
 
   return (
-    <div className="r">
-      <div className="contact-page">
-        <div className="contact-container">
-          <h2>Bog‘lanish</h2>
-          <p className="description">
-            Biz bilan bog‘laning! Agar sizda savollar bo‘lsa yoki biror narsa haqida so‘ramoqchi bo‘lsangiz, quyidagi formani to‘ldiring.
-          </p>
-          <div className="content-wrapper">
-            <div className="contact-info">
-              <h3>Bizga murojaat qiling!</h3>
-              <p>
-                Biz har doim sizning savollaringizga javob berishga tayyormiz. Quyidagi forma orqali xabar yuboring yoki ijtimoiy tarmoqlarda bizni kuzating.
-              </p>
-              <div className="social-icons">
-                <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook" /></a>
-                <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter" /></a>
-                <a href="https://www.instagram.com/qowinov7"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" /></a>
-                <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" /></a>
+    <div className="contact-section-wrapper">
+      <div className="contact-glow-overlay"></div>
+      <div className="contact-main-container">
+        <h2 className="contact-title">Muloqot Nuqtasi</h2>
+        <p className="contact-subtitle">
+          G'oyalaringizni haqiqatga aylantirish vaqti keldi. Men bilan bog'laning!
+        </p>
+
+        <div className="contact-grid-layout">
+          {/* Chap taraf: Ma'lumotlar */}
+          <div className="info-glass-card">
+            <h3>Aloqa Ma'lumotlari</h3>
+            <p>Siz bilan hamkorlik qilishdan doim mamnunman.</p>
+            
+            <div className="detail-list">
+              <div className="detail-item">
+                <span className="detail-icon"><MdOutlineAlternateEmail/></span>
+                <div>
+                  <strong>Email</strong>
+                  <span>temurqowinov@gmail.com</span>
+                </div>
+              </div>
+              <div className="detail-item">
+                <span className="detail-icon"><FaPhoneVolume /></span>
+                <div>
+                  <strong>Telefon</strong>
+                  <span>+998 77 506 63 43</span>
+                </div>
               </div>
             </div>
-            <div className="form-wrapper">
-              <form onSubmit={handleSubmit} className="form">
-                <input
-                  type="text"
-                  placeholder="Ismingiz"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="input"
-                />
-                <input
-                  type="email"
-                  placeholder="Email manzilingiz"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="input"
-                />
-                <input
-                  type="text"
-                  placeholder="Mavzu"
-                  value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
-                  required
-                  className="input"
-                />
-                <textarea
-                  placeholder="Xabaringizni yozing..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  className="textarea"
-                />
-                <button type="submit" className="submit-button">Xabar yuborish</button>
-              </form>
+
+            <div className="social-neo-links">
+              <a href="https://t.me/qowinov7" target="_blank" rel="noreferrer"><FaTelegramPlane /></a>
+              <a href="https://www.instagram.com/qowinov7" target="_blank" rel="noreferrer"><FaInstagram /></a>
+              <a href="#" target="_blank" rel="noreferrer"><FaLinkedin /></a>
+              <a href="#" target="_blank" rel="noreferrer"><FaFacebook /></a>
             </div>
           </div>
-          {/* Pastda qo'shimcha ma'lumotlar bo'limi */}
-          <div className="additional-contact-info">
-            <h3>Bizning aloqa ma'lumotlarimiz</h3>
-            <div className="contact-details">
-              <div className="contact-item">
-                <span className="icon"><MdOutlineAlternateEmail/></span> <strong>Email:</strong>temurqowinov@gmail.com
+
+          {/* O'ng taraf: Forma */}
+          <div className="form-glass-card">
+            <form onSubmit={handleSubmit} className="neo-form">
+              <div className="input-group">
+                <input type="text" placeholder="Ismingiz" value={name} onChange={(e) => setName(e.target.value)} required />
               </div>
-              <div className="contact-item">
-                <span className="icon"><FaPhoneVolume />
-</span> <strong>Telefon:</strong> +998 77 506 63 43
+              <div className="input-group">
+                <input type="email" placeholder="Emailingiz" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
-            </div>
+              <div className="input-group">
+                <input type="text" placeholder="Mavzu" value={subject} onChange={(e) => setSubject(e.target.value)} required />
+              </div>
+              <div className="input-group">
+                <textarea placeholder="Xabaringizni shu yerda qoldiring..." value={message} onChange={(e) => setMessage(e.target.value)} required />
+              </div>
+              <button type="submit" className="neo-submit-btn">
+                Xabarni Yuborish <FaTelegramPlane style={{marginLeft: '10px'}}/>
+              </button>
+            </form>
           </div>
         </div>
       </div>

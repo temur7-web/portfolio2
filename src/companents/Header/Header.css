@@ -1,18 +1,4 @@
-.header {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to bottom right, #000000, #0f2c3e, #001f3f);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  color: #ffea00;
-  padding: 0 20px;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  z-index: 100;
-}
+
 
 .header img {
   width: 150px;
@@ -46,7 +32,107 @@
   transition: all 0.3s ease;
   letter-spacing: 0.5px; /* Harflar orasidagi masofani biroz kengaytirdim */
 }
+/* --- DESKTOP (ASOSIY HOLAT) --- */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 102px;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+}
 
+.header-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover { color: #00f2ff; }
+
+.mobile-icon, .mobile-dropdown { display: none; } /* Desktopda bularni yashiramiz */
+
+/* --- MEDIA QUERIES (MOBIL UCHUN) --- */
+@media (max-width: 768px) {
+  .nav-desktop { display: none; } /* Desktop menyuni yashiramiz */
+
+  .mobile-icon {
+    display: block;
+    font-size: 2.2rem;
+    color: #00f2ff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  /* Ekranni to'ldirmaydigan, o'ng tomondan chiqadigan kichik menyu */
+  .mobile-dropdown {
+    display: block;
+    position: absolute;
+    top: 90px; /* Headerdan biroz pastda */
+    right: 20px;
+    width: 250px; /* Ekranni to'ldirmaydi! */
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .mobile-dropdown.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-dropdown ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .mobile-dropdown li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-dropdown a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 15px;
+  }
+
+  .mobile-dropdown a span {
+    color: #00f2ff;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+}
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -237,7 +323,7 @@ width: 100px;
   .header {
     max-width: 480px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
   }
 
   .header img {
