@@ -6,7 +6,17 @@
   top: 50% !important; /* Markazlashtirish uchun */
   left: 50% !important;
   transform: translate(-50%, -50%) !important; /* Videoni o'rtaga tekislash */
-  
+  html {
+  /* Sahifa sakrab chiqmasligi uchun yumshoq scroll */
+  scroll-behavior: smooth; 
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Scroll doim tepada nol bo'lishi uchun overflow-x ni yopamiz */
+  overflow-x: hidden; 
+}
   /* Eng muhim qismi: */
   min-width: 100% !important; 
   min-height: 100% !important;
