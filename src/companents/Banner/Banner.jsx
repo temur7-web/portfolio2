@@ -13,7 +13,7 @@ function Banner() {
 
         <div className="banner-content-two-columns glass-box">
           <div className="profile-container">
-            <img src="/7.jpg" alt="Temur" className="profile-img" />
+            <img src="ttem.jpg" alt="Temur" className="profile-img" />
           </div>
 
           <div className="text-info">

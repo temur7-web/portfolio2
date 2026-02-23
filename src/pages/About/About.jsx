@@ -12,7 +12,7 @@ function About() {
         {/* 1. Header: Profile and Intro */}
         <div className="bento-item main-profile">
           <div className="profile-wrapper">
-            <img src="7.jpg" alt="Temur" className="profile-img" />
+            <img src="ttem.jpg" alt="Temur" className="profile-img" />
             <div className="profile-info">
               <h1>Temur Sotvoldiyev</h1>
               <p className="subtitle">Full-Stack Developer | 17 Years Old</p>

@@ -16,7 +16,7 @@ function Futer() {
         {/* Shaxsiy Brending */}
         <div className="footer-brand">
           <div className="brand-header">
-            <img src="7.jpg" alt="Temur" className="mini-avatar" />
+            <img src="ttem.jpg" alt="Temur" className="mini-avatar" />
             <div>
               <h4>Temur Sotvoldiyev</h4>
               <p className="footer-subtitle">Full-Stack Developer</p>
