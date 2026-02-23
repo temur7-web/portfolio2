@@ -7,6 +7,18 @@ import { SiReact, SiMongodb, SiPostgresql, SiPostman, SiSwagger } from "react-ic
 function About() {
   return (
     <div className='about-page'>
+     {/* Video */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="background-video"
+      >
+        {/* Fayl nomi to'g'riligini tekshiring (public papkasida bo'lishi kerak) */}
+        <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+        Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
+      </video>
       <div className="about-container">
         
         {/* 1. Header: Profile and Intro */}

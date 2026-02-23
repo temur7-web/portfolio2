@@ -139,4 +139,84 @@
     grid-template-areas: "profile" "bio" "tech" "goals" "exp";
   }
   .profile-wrapper { flex-direction: column; text-align: center; }
+}/* About.css */
+
+.about-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  /* Fon shaffof bo'lishi shart, aks holda video ko'rinmaydi */
+  background: transparent !important; 
+}
+
+/* VIDEO SOZLAMALARI - Eng muhim qismi */
+.background-video {
+  position: fixed !important; /* Sahifa skrol bo'lganda ham o'rnida qoladi */
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Markazga tekislaydi */
+  
+  /* Ekran qanchalik kichik bo'lmasin, video o'lchami ekrandan kichik bo'lmaydi */
+  min-width: 100% !important;
+  min-height: 100% !important;
+  
+  /* Video nisbatini buzmasdan butun ekranni qoplaydi */
+  object-fit: cover !important; 
+  
+  /* Barcha elementlardan orqada turadi */
+  z-index: -1 !important; 
+  
+  /* Ba'zi brauzerlar uchun qora fon (zaxira) */
+  background-color: #020617;
+}
+
+/* Kontent videoni ustida ko'rinishi uchun */
+.about-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  display: grid;
+  /* Bento grid uslubi */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 775px dan kichik bo'lganda grid va video boshqaruvi */
+@media (max-width: 775px) {
+  .background-video {
+    /* Mobil qurilmalarda video "siqilib" qolmasligi uchun */
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr !important; /* Hammasi bitta ustun */
+    padding: 80px 15px;
+  }
+  
+  .bento-item {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+
+/* Bento bloklari uchun Glassmorphism (1-rasmdagi effekt) */
+.bento-item {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 242, 255, 0.15);
+  border-radius: 24px;
+  padding: 30px;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.bento-item:hover {
+  border-color: rgba(0, 242, 255, 0.4);
+  transform: translateY(-5px);
 }

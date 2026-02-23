@@ -198,4 +198,68 @@
     grid-template-columns: 1fr;
   }
   .contact-title { font-size: 2.2rem; }
+}/* Contact.css */
+
+.contact-section-wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: transparent; /* Video ko'rinishi uchun */
+}
+
+/* 1. Background Video */
+.background-video {
+  position: fixed; /* Videoni qotirib qo'yadi */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* 2. Overlay (Qorong'ulatish) */
+.contact-glow-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* Video ustidan qora rang */
+  z-index: -1;
+}
+
+/* 3. Glass Cardlar */
+.info-glass-card, .form-glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 242, 255, 0.2);
+  border-radius: 25px;
+  padding: 40px;
+  color: white;
+}
+
+/* Markazlashtirish va Responsive */
+.contact-main-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.contact-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+@media (max-width: 968px) {
+  .contact-grid-layout {
+    grid-template-columns: 1fr;
+  }
 }

@@ -61,8 +61,20 @@ function Projects() {
 
   return (
     <div className='r'>
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="background-video"
+      >
+        <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+        Brauzeringiz videoni qo'llab-quvvatlamaydi.
+      </video>
       <div className="portfolio-premium-wrapper">
+        
         <div className="header-content">
+          
           <h2 className="main-title">Tanlangan Loyihalar</h2>
           <p className="subtitle">40 dan ortiq muvaffaqiyatli loyihalar orasidan saralab olinganlari</p>
         </div>

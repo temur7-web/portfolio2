@@ -10,7 +10,16 @@ function Banner() {
     <div className="r">
       <div className="banner-container">
         
-
+<video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="background-video"
+        >
+          <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+          Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
+        </video>
         <div className="banner-content-two-columns glass-box">
           <div className="profile-container">
             <img src="ttem.jpg" alt="Temur" className="profile-img" />

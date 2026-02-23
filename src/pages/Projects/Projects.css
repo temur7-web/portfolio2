@@ -209,3 +209,26 @@
   background: rgba(255, 0, 0, 0.1);
   color: #ff0000;
 }
+.background-video {
+  position: fixed; /* MUHIM: Skrol bo'lganda video siljimasligi kerak */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Har doim ko'rinib turgan ekran balandligida bo'ladi */
+  object-fit: cover;
+  z-index: -2; /* Hamma narsadan orqada */
+}
+
+.video-overlay-projects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Videoni qorong'ulatish */
+  z-index: -1;
+}.r, .portfolio-premium-wrapper {
+  background: transparent !important; /* Fon rangini butunlay yo'qotamiz */
+  min-height: 100vh;
+  display: block; /* Flex bo'lsa, ba'zida balandlikda xato berishi mumkin */
+}

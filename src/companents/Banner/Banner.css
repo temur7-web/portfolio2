@@ -488,3 +488,66 @@ grid-template-columns:1fr;
 }
 
 }
+/* 1. Video Background Sozlamalari */
+.background-video {
+  position: fixed; /* Videoni bir joyda qotiradi */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Noutbuk ekrani balandligida */
+  object-fit: cover; /* Videoni ekran o'lchamiga moslab kesadi */
+  z-index: -1; /* Hamma narsadan orqada turadi */
+}
+
+/* 2. Video ustidagi qora xira qatlam */
+/* Bu matnlar oq fonda yo'qolib ketmasligi uchun kerak */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 50% qoralik */
+  z-index: -1;
+}
+
+/* 3. Banner Container-ni shaffof qilish */
+.banner-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: transparent; /* Fon rasmi o'rniga video ko'rinishi uchun */
+  overflow-x: hidden;
+}
+
+/* 4. Glass Box effekti video ustida zo'r ko'rinadi */
+.glass-box {
+  background: rgba(15, 23, 42, 0.4) !important; /* Shaffofroq */
+  backdrop-filter: blur(10px) !important;
+}
+
+/* ================= MEDIA QUERIES (Vidio buzilmasligi uchun) ================= */
+
+@media (max-width: 1024px) {
+  .background-video {
+    height: 100%; /* Planshetda ham to'liq yopadi */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobilda video juda ko'p internet va protsessor yemasligi uchun 
+     ba'zida uni o'rniga rasm qo'yishadi, lekin sizda video tursin desangiz: */
+  .background-video {
+    position: fixed;
+    width: auto;
+    height: 100vh;
+    left: 50%;
+    transform: translateX(-50%); /* Videoni markazda ushlaydi */
+  }
+}
+
+/* Qolgan barcha CSS kodlaringiz (Profil, Cardlar va hokazo) pastdan davom etadi... */

@@ -8,6 +8,16 @@ import { FaGithub } from "react-icons/fa";
 function Skills() {
   return (
     <div className='r'>
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className="background-video"
+      >
+        <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+        Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
+      </video>
     <div className="skills-container">
       <div className="skills-content">
         <h2 className="section-title">Ko‘nikmalar</h2>

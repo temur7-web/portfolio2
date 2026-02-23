@@ -18,6 +18,16 @@ function Contact() {
 
   return (
     <div className="contact-section-wrapper">
+      <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="background-video"
+        >
+          <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+          Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
+        </video>
       <div className="contact-glow-overlay"></div>
       <div className="contact-main-container">
         <h2 className="contact-title">Muloqot Nuqtasi</h2>

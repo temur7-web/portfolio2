@@ -1,0 +1,36 @@
+/* App.css */
+
+.background-video {
+  /* Videoni ekranga mixlab qo'yamiz */
+  position: fixed !important;
+  top: 50% !important; /* Markazlashtirish uchun */
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Videoni o'rtaga tekislash */
+  
+  /* Eng muhim qismi: */
+  min-width: 100% !important; 
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  
+  /* Aspect rationi buzmasdan ekranni to'ldirish */
+  object-fit: cover !important; 
+  
+  z-index: -1 !important;
+}
+
+/* 775px va undan kichik ekranlar uchun maxsus */
+@media (max-width: 775px) {
+  .background-video {
+    /* Mobil qurilmalarda video kichrayib ketmasligi uchun majburiy balandlik */
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: cover !important;
+  }
+  
+  /* Agar kontentingiz videoni siqib qo'yayotgan bo'lsa, barcha wrapperlarni kengaytir */
+  .app-main-container, .content-layer {
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
