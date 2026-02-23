@@ -239,7 +239,69 @@ function Banner() {
     </div>
   </div>
 </div>
+<div className="extra-section">
+
+<h2>Developer Hikoyam</h2>
+
+<div className="extra-grid">
+
+<div className="extra-card story-card">
+
+<h3>Qanday Boshlaganman</h3>
+
+<p>
+Dasturlashni oddiy HTML sahifalar yaratishdan boshladim.
+Bugun esa React va Node.js orqali real loyihalar ustida ishlayapman.
+Har kuni yangi texnologiya o‘rganish mening asosiy maqsadim.
+</p>
+
+</div>
+
+
+<div className="extra-card work-card">
+
+<h3>Ishlash Usulim</h3>
+
+<ul>
+
+<li>Clean Code yozish.</li>
+
+<li>UX va Performance birinchi o‘rinda.</li>
+
+<li>API-first Backend.</li>
+
+<li>Team bilan tez ishlash.</li>
+
+</ul>
+
+</div>
+
+
+<div className="extra-card language-card">
+
+<h3>Tillar</h3>
+
+<ul>
+
+<li>O‘zbek — Native</li>
+
+<li>English — Intermediate</li>
+
+<li>Japanese — Learning 🇯🇵</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+
+</div>
+
       </div>
+     
+
     </div>
   );
 }
