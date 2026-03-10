@@ -9,12 +9,12 @@ function Banner() {
   return (
     <div className="r">
       <div className="banner-container">
-        
-<video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
+
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="background-video"
         >
           <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
@@ -105,211 +105,182 @@ function Banner() {
             <h3>Backend</h3>
             <p>Node.js, Express, MongoDB</p>
           </div>
-        
+
         </div>
 
         {/* Sertifikatlar bo'limi */}
-        <div className="certificate-section">
+   <div className="certificate-section">
           <h2>Sertifikatlarim</h2>
-          <div className="certificate-cards">
-            <div className="certificate-card">
-              <img
-                src="/nodepng.png"
-                alt="Node.js Certificate"
-                className="certificate-img"
-              />
-              <div className="certificate-content">
-                <h3>Node.js Sertifikati</h3>
-                <div className="certificate-info">
-                  <p>
-                    <strong>Kurs:</strong> Full Stack Development
-                  </p>
-                  <p>
-                    <strong>Platforma:</strong> Udemy
-                  </p>
-                  <p>
-                    <strong>Sana:</strong> 2024
-                  </p>
+          <div className="certificate-grid">
+            
+            {/* Node.js Certificate */}
+            <div className="cert-card">
+              <div className="image-box">
+                <img src="/img.png" alt="Node.js" />
+              </div>
+              <div className="card-overlay">
+                <h3 className="cert-title">Node.js Sertifikati</h3>
+                <div className="details">
+                  <p><strong>Kurs:</strong> Full Stack Dev</p>
+                  <p><strong>Platforma:</strong> Udemy</p>
+                  <p><strong>Sana:</strong> 2024</p>
                 </div>
-                <div className="certificate-learned">
-                  <p>
-                    <strong>Nimalarni o‘rgandim:</strong> Node.js va Express.js
-                    yordamida REST API’lar yaratish, MongoDB bilan ishlash va real
-                    vaqtda backend tizimlarini qurish.
-                  </p>
+                <div className="skills-box">
+                  <h4>O'rgandim:</h4>
+                  <p>REST API, Express.js, MongoDB va Backend arxitekturasi.</p>
                 </div>
               </div>
             </div>
 
-            <div className="certificate-card">
-              <img
-                src="/png.png"
-                alt="React Certificate"
-                className="certificate-img"
-              />
-              <div className="certificate-content">
-                <h3>React Sertifikati</h3>
-                <div className="certificate-info">
-                  <p>
-                    <strong>Kurs:</strong> React Basics
-                  </p>
-                  <p>
-                    <strong>Platforma:</strong> Coursera
-                  </p>
-                  <p>
-                    <strong>Sana:</strong> 2024
-                  </p>
+            {/* React Certificate */}
+            <div className="cert-card">
+              <div className="image-box">
+                <img src="/png.png" alt="React" />
+              </div>
+              <div className="card-overlay">
+                <h3 className="cert-title">React Sertifikati</h3>
+                <div className="details">
+                  <p><strong>Kurs:</strong> React Basics</p>
+                  <p><strong>Platforma:</strong> Coursera</p>
+                  <p><strong>Sana:</strong> 2024</p>
                 </div>
-                <div className="certificate-learned">
-                  <p>
-                    <strong>Nimalarni o‘rgandim:</strong> React komponentlari,
-                    state va props bilan ishlash, React Router yordamida
-                    navigatsiya qilish va zamonaviy frontend ilovalar yaratish.
-                  </p>
+                <div className="skills-box">
+                  <h4>O'rgandim:</h4>
+                  <p>Hooks, State Management, Router va UI komponentlar.</p>
                 </div>
               </div>
             </div>
 
-            <div className="certificate-card">
-              <img
-                src="/hacaton.jpg"
-                alt="Hackathon Certificate"
-                className="certificate-img"
-              />
-              <div className="certificate-content">
-                <h3>Hackathon 1-o‘rin</h3>
-                <div className="certificate-info">
-                  <p>
-                    <strong>Tadbir:</strong> Web Dev Hackathon
-                  </p>
-                  <p>
-                    <strong>Texnologiyalar:</strong> HTML, CSS, JS
-                  </p>
-                  <p>
-                    <strong>Sana:</strong> 2025
-                  </p>
+            {/* Hackathon Certificate */}
+            <div className="cert-card">
+              <div className="image-box">
+                <img  src="/Gemini_Generated_Image_jl51hmjl51hmjl51.png" alt="Hackathon" />
+              </div>
+              <div className="card-overlay">
+                <h3 className="cert-title">Hackathon 1-o'rin</h3>
+                <div className="details">
+                  <p><strong>Tadbir:</strong> Web Dev Hackathon</p>
+                  <p><strong>Sana:</strong> 2025</p>
                 </div>
-                <div className="certificate-learned">
-                  <p>
-                    <strong>Nimalarni o‘rgandim:</strong> Vaqt cheklovlari ichida
-                    samarali ishlash, jamoaviy loyiha boshqarish va frontend
-                    texnologiyalarini qo‘llash orqali muammolarni hal qilish.
-                  </p>
+                <div className="skills-box">
+                  <h4>O'rgandim:</h4>
+                  <p>Teamwork, Fast Coding va Frontend yechimlar.</p>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
-     {/* Qilgan saytlarim bo‘limi */}
-<div className="projects-section">
-  <h2>Qilgan saytlarim</h2>
-  <div className="project-cards">
-    <div className="card project-card">
-      <img src="/olcha.png" alt="Olcha.uz" className="project-img" />
-      <h3>Olcha.uz klon</h3>
-      <p>E-commerce dizayni va funksional kart tizimi.</p>
-      <a
-        href="https://olcha.uz"
-        className="card-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Ko‘rish
-      </a>
-    </div>
+        {/* Qilgan saytlarim bo‘limi */}
+        <div className="projects-section">
+          <h2>Qilgan saytlarim</h2>
+          <div className="project-cards">
+            <div className="card project-card">
+              <img src="/olcha.png" alt="Olcha.uz" className="project-img" />
+              <h3>Olcha.uz klon</h3>
+              <p>E-commerce dizayni va funksional kart tizimi.</p>
+              <a
+                href="https://olcha.uz"
+                className="card-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ko‘rish
+              </a>
+            </div>
 
-    <div className="card project-card">
-      <img src="/uzum.png" alt="UZM Market" className="project-img" />
-      <h3>UZM Market</h3>
-      <p>Mahsulotlar katalogi va foydalanuvchi interfeysi.</p>
-      <a
-        href="https://uzum.uz"
-        className="card-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Ko‘rish
-      </a>
-    </div>
+            <div className="card project-card">
+              <img src="/uzum.png" alt="UZM Market" className="project-img" />
+              <h3>UZM Market</h3>
+              <p>Mahsulotlar katalogi va foydalanuvchi interfeysi.</p>
+              <a
+                href="https://uzum.uz"
+                className="card-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ko‘rish
+              </a>
+            </div>
 
-    <div className="card project-card">
-      <img src="/asaxiy.jpg" alt="Asaxiy" className="project-img" />
-      <h3>Asaxiy Klon</h3>
-      <p>Sayt dizayni, search filter va responsive layout.</p>
-      <a
-        href="https://asaxiy.uz"
-        className="card-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Ko‘rish
-      </a>
-    </div>
-  </div>
-</div>
-<div className="extra-section">
+            <div className="card project-card">
+              <img src="/asaxiy.jpg" alt="Asaxiy" className="project-img" />
+              <h3>Asaxiy Klon</h3>
+              <p>Sayt dizayni, search filter va responsive layout.</p>
+              <a
+                href="https://asaxiy.uz"
+                className="card-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ko‘rish
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="extra-section">
 
-<h2>Developer Hikoyam</h2>
+          <h2>Developer Hikoyam</h2>
 
-<div className="extra-grid">
+          <div className="extra-grid">
 
-<div className="extra-card story-card">
+            <div className="extra-card story-card">
 
-<h3>Qanday Boshlaganman</h3>
+              <h3>Qanday Boshlaganman</h3>
 
-<p>
-Dasturlashni oddiy HTML sahifalar yaratishdan boshladim.
-Bugun esa React va Node.js orqali real loyihalar ustida ishlayapman.
-Har kuni yangi texnologiya o‘rganish mening asosiy maqsadim.
-</p>
+              <p>
+                Dasturlashni oddiy HTML sahifalar yaratishdan boshladim.
+                Bugun esa React va Node.js orqali real loyihalar ustida ishlayapman.
+                Har kuni yangi texnologiya o‘rganish mening asosiy maqsadim.
+              </p>
 
-</div>
-
-
-<div className="extra-card work-card">
-
-<h3>Ishlash Usulim</h3>
-
-<ul>
-
-<li>Clean Code yozish.</li>
-
-<li>UX va Performance birinchi o‘rinda.</li>
-
-<li>API-first Backend.</li>
-
-<li>Team bilan tez ishlash.</li>
-
-</ul>
-
-</div>
+            </div>
 
 
-<div className="extra-card language-card">
+            <div className="extra-card work-card">
 
-<h3>Tillar</h3>
+              <h3>Ishlash Usulim</h3>
 
-<ul>
+              <ul>
 
-<li>O‘zbek — Native</li>
+                <li>Clean Code yozish.</li>
 
-<li>English — Intermediate</li>
+                <li>UX va Performance birinchi o‘rinda.</li>
 
-<li>Japanese — Learning 🇯🇵</li>
+                <li>API-first Backend.</li>
 
-</ul>
+                <li>Team bilan tez ishlash.</li>
 
-</div>
+              </ul>
+
+            </div>
+
+
+            <div className="extra-card language-card">
+
+              <h3>Tillar</h3>
+
+              <ul>
+
+                <li>O‘zbek — Native</li>
+
+                <li>English — Intermediate</li>
+
+                <li>Japanese — Learning 🇯🇵</li>
+
+              </ul>
+
+            </div>
 
 
 
-</div>
+          </div>
 
-</div>
+        </div>
 
       </div>
-     
+
 
     </div>
   );

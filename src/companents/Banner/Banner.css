@@ -551,3 +551,141 @@ grid-template-columns:1fr;
 }
 
 /* Qolgan barcha CSS kodlaringiz (Profil, Cardlar va hokazo) pastdan davom etadi... */
+/* 1. Sertifikatlar Grid-ni markazlashtirish */
+.certificate-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* 2. Asosiy Karta Stili */
+.cert-card {
+    position: relative;
+    width: 350px;
+    height: 420px;
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(0, 242, 255, 0.1);
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
+#m{
+  height: 1500px;
+}
+
+/* 3. Rasm qutisi va Oq fonni yo'qotish */
+.image-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    transition: 0.6s ease;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* AGAR RASM FONING OQ BO'LSA, PASTDAGI QATORNI YOQING: */
+    /* mix-blend-mode: lighten; */ 
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
+    transition: 0.6s ease;
+}
+
+/* 4. Hover effekti - Fon rangi o'zgarishi */
+.cert-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    /* Hover bo'lganda fon biroz ranglanadi */
+    background: rgba(0, 242, 255, 0.05); 
+    border-color: #00f2ff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 255, 0.2);
+}
+
+/* 5. Overlay (Ma'lumotlar qismi) */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 10, 12, 0.1), 
+        rgba(10, 10, 12, 0.95)
+    );
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.5s ease;
+}
+
+.cert-card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cert-card:hover .image-box {
+    filter: blur(10px) grayscale(100%);
+    transform: scale(0.8);
+    opacity: 0.3;
+}
+
+/* 6. Matnlar stili */
+.cert-title {
+    color: #00f2ff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(0, 242, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.details p {
+    color: #e0e0e0;
+    font-size: 15px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.skills-box {
+    margin-top: 20px;
+    background: rgba(0, 242, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    border-left: 3px solid #00f2ff;
+    text-align: left;
+}
+
+.skills-box h4 {
+    color: #00f2ff;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.skills-box p {
+    color: #bbb;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* 7. Responsive (Mobillar uchun) */
+@media (max-width: 768px) {
+    .cert-card {
+        width: 100%; /* Mobil telefonda to'liq ekran */
+        max-width: 380px;
+        height: 380px;
+    }
+    .certificate-grid {
+        padding: 0 10px;
+    }
+}
