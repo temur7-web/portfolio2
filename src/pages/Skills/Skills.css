@@ -1,37 +1,86 @@
-/* Skills.css */
+/* ==========================================
+   1. UMUMIY SAHIFA VA FON SOZLAMALARI
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-.skills-container {
-  /* Asosiy fon yuqoridagi banner bilan bir xil */
-  background: radial-gradient(circle at bottom left, #0a1f2e, #030a0f);
-  padding: 80px 20px;
-  color: #fff;
+.skills-page-wrapper {
+  position: relative;
   min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 4% 60px 4%;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #f1f5f9;
+  overflow-x: hidden;
+  background-color: #030712; /* Video yuklanguncha zaxira fon */
 }
 
-.skills-content {
-  max-width: 1100px;
-  margin: 0 auto;
+/* Fon Videosi */
+.background-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
 }
 
-/* Sarlavha stili */
+/* Video ustidagi quyuqlashtiruvchi va neon nurli qatlam */
+.skills-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 30%, rgba(0, 242, 255, 0.06), transparent 50%),
+              radial-gradient(circle at 90% 70%, rgba(99, 102, 241, 0.06), transparent 50%),
+              rgba(3, 7, 18, 0.7);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ==========================================
+   2. ASOSIY SHAFFOF OYNA (GLASS CONTAINER)
+   ========================================== */
+.skills-container {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(20px) saturate(125%);
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  padding: 50px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* Katta Sarlavha */
 .section-title {
   text-align: center;
-  font-size: 42px;
-  margin-bottom: 50px;
+  font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(to right, #ffffff, #00f2ff);
+  margin-top: 0;
+  margin-bottom: 50px;
+  background: linear-gradient(135deg, #ffffff 30%, #00f2ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
+  letter-spacing: -0.5px;
 }
 
-.skills-section {
-  margin-bottom: 60px;
-}
-
+/* Kichik Sarlavhalar */
 .sub-title {
-  font-size: 26px;
-  color: #00f2ff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0;
   margin-bottom: 30px;
   display: flex;
   align-items: center;
@@ -42,284 +91,277 @@
   content: "";
   height: 1px;
   flex: 1;
-  background: rgba(0, 242, 255, 0.2);
+  background: linear-gradient(90deg, rgba(0, 242, 255, 0.3), transparent);
 }
 
-/* Texnik ko'nikmalar Grid */
-.tech-skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-/* Skill Item - Karta stili */
-.skill-item {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 242, 255, 0.1);
-  border-radius: 20px;
-  padding: 25px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* HOVER EFFEKTI */
-.skill-item:hover {
-  transform: translateY(-10px);
-  border-color: rgba(0, 242, 255, 0.5);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 255, 0.1);
-  background: rgba(15, 23, 42, 0.8);
-}
-
-.skill-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.skill-icon {
-  font-size: 40px;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-}
-
-.skill-item span {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-
-/* Progress Bar Dizayni */
-.progress-bar {
-  background-color: rgba(57, 75, 89, 0.4);
-  border-radius: 20px;
-  height: 12px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.progress {
-  height: 100%;
-  background: linear-gradient(90deg, #00c6ff 0%, #00f2ff 100%);
-  border-radius: 20px;
-  position: relative;
-  transition: width 1.5s cubic-bezier(0.1, 0.42, 0.41, 1);
-  box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-}
-
-/* Progress Label */
-.progress-label {
-  position: absolute;
-  right: 0;
-  top: -25px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #00f2ff;
-}
-
-/* Yumshoq ko'nikmalar listi */
-.soft-skills-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 15px;
-  list-style: none;
-}
-
-.soft-skills-list li {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 15px 20px;
-  border-radius: 12px;
-  border-left: 4px solid #00f2ff;
-  transition: 0.3s;
-  color: #cbd5e1;
-}
-
-.soft-skills-list li:hover {
-  background: rgba(0, 242, 255, 0.05);
-  transform: translateX(10px);
-}
-
-/* Qo'shimcha ma'lumot qismi */
-.skills-text {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cbd5e1;
-  background: rgba(15, 23, 42, 0.5);
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Ikonka Ranglari */
-.html { color: #e44d26; }
-.css { color: #264de4; }
-.javascript { color: #f7df1e; }
-.react { color: #61dafb; }
-.node { color: #3c873a; }
-.mongodb { color: #47A248; }
-.postgresql { color: #336791; }
-.github { color: #ffffff; }
-.postman { color: #ff6c37; }
-.swagger { color: #85ea2d; }
-
-/* Media Queries (Responsive) */
-@media (max-width: 768px) {
-  .section-title { font-size: 32px; }
-  .tech-skills { grid-template-columns: 1fr; }
-  .skill-item { padding: 20px; }
-}/* Skills.css */
-
-/* 1. Umumiy sahifa sozlamalari */
-.skills-page-wrapper {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Markazda turishi uchun */
-  padding: 80px 20px;
-  background: transparent; /* Video ko'rinishi uchun */
-  overflow-x: hidden;
-  
-}
-
-/* 2. Video fon (Fixed - qotirilgan) */
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-}
-
-/* 3. Video ustidagi qorong'u qatlam */
-.skills-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 50% qorong'ulik */
-  z-index: -1;
-}
-
-/* 4. Asosiy Glass Container (1-rasmdagi katta oyna) */
-.skills-container {
-  margin: auto;
-  max-width: 1000px;
-  width: 100%;
-  background: rgba(15, 23, 42, 0.4); /* Juda shaffof ko'k-qora fon */
-  backdrop-filter: blur(15px); /* Orqani xiralashtirish (Glass effekti) */
-  border: 1px solid rgba(0, 242, 255, 0.2); /* Neon chegara */
-  border-radius: 40px; /* Yumshoq burchaklar */
-  padding: 50px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* Sarlavhalar */
-.section-title {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin-bottom: 30px;
-  background: linear-gradient(to right, #fff, #00f2ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sub-title {
-  color: #00f2ff;
-  font-size: 1.5rem;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(0, 242, 255, 0.2);
-  padding-bottom: 10px;
-}
-
-/* 5. Texnik ko'nikmalar gridi */
+/* ==========================================
+   3. TEXNIK KO'NIKMALAR (GRID & KARTALAR)
+   ========================================== */
 .tech-skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
-/* Har bir ko'nikma punkti */
 .skill-item {
-  background: rgba(255, 255, 255, 0.03); /* Ichki kartalar yanada shaffof */
-  padding: 20px;
+  background: rgba(30, 41, 59, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.3s ease;
-}
-
-.skill-item:hover {
-  background: rgba(0, 242, 255, 0.05);
-  border-color: rgba(0, 242, 255, 0.4);
+  padding: 25px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
 }
 
 .skill-info {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+}
+
+.skill-info span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
 }
 
 .skill-icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* 6. Progress Bar (Neon uslubda) */
+/* HOVER HOLATI - Karta va Ikonkalar uchun porlash effekti */
+.skill-item:hover {
+  transform: translateY(-5px);
+  background: rgba(30, 41, 59, 0.5);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.skill-item:hover .skill-icon {
+  transform: scale(1.1);
+}
+
+/* Har bir texnologiyaning o'ziga xos hover nuri */
+.skill-item:hover:has(.html) { border-color: rgba(227, 79, 38, 0.4); box-shadow: 0 10px 30px -10px rgba(227, 79, 38, 0.15); }
+.skill-item:hover:has(.css) { border-color: rgba(38, 77, 228, 0.4); box-shadow: 0 10px 30px -10px rgba(38, 77, 228, 0.15); }
+.skill-item:hover:has(.javascript) { border-color: rgba(247, 223, 30, 0.4); box-shadow: 0 10px 30px -10px rgba(247, 223, 30, 0.15); }
+.skill-item:hover:has(.react) { border-color: rgba(97, 218, 251, 0.4); box-shadow: 0 10px 30px -10px rgba(97, 218, 251, 0.15); }
+.skill-item:hover:has(.node) { border-color: rgba(60, 135, 58, 0.4); box-shadow: 0 10px 30px -10px rgba(60, 135, 58, 0.15); }
+.skill-item:hover:has(.mongodb) { border-color: rgba(71, 162, 72, 0.4); box-shadow: 0 10px 30px -10px rgba(71, 162, 72, 0.15); }
+.skill-item:hover:has(.postgresql) { border-color: rgba(51, 103, 145, 0.4); box-shadow: 0 10px 30px -10px rgba(51, 103, 145, 0.15); }
+.skill-item:hover:has(.github) { border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.15); }
+.skill-item:hover:has(.postman) { border-color: rgba(255, 108, 55, 0.4); box-shadow: 0 10px 30px -10px rgba(255, 108, 55, 0.15); }
+.skill-item:hover:has(.swagger) { border-color: rgba(133, 234, 45, 0.4); box-shadow: 0 10px 30px -10px rgba(133, 234, 45, 0.15); }
+
+/* Statik Ikonka ranglari */
+.html { color: #e44d26; filter: drop-shadow(0 0 4px rgba(227, 79, 38, 0.2)); }
+.css { color: #264de4; filter: drop-shadow(0 0 4px rgba(38, 77, 228, 0.2)); }
+.javascript { color: #f7df1e; filter: drop-shadow(0 0 4px rgba(247, 223, 30, 0.15)); }
+.react { color: #61dafb; filter: drop-shadow(0 0 4px rgba(97, 218, 251, 0.3)); }
+.node { color: #3c873a; filter: drop-shadow(0 0 4px rgba(60, 135, 58, 0.2)); }
+.mongodb { color: #47A248; filter: drop-shadow(0 0 4px rgba(71, 162, 72, 0.2)); }
+.postgresql { color: #336791; filter: drop-shadow(0 0 4px rgba(51, 103, 145, 0.2)); }
+.github { color: #ffffff; filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2)); }
+.postman { color: #ff6c37; filter: drop-shadow(0 0 4px rgba(255, 108, 55, 0.2)); }
+.swagger { color: #85ea2d; filter: drop-shadow(0 0 4px rgba(133, 234, 45, 0.2)); }
+
+/* ==========================================
+   4. PROGRESS BAR (YUKLANISH LINIYALARI)
+   ========================================== */
 .progress-bar {
-  width: 100%;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  width: 100%;
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .progress {
   height: 100%;
-  background: linear-gradient(90deg, #00f2ff, #0072ff);
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.6); /* Neon nur taratish */
+  border-radius: 30px;
+  position: relative;
+  /* Animatsiya kirib kelganda chiziq sekin to'lishi uchun */
+  transform-origin: left;
+  animation: loadProgress 1.4s cubic-bezier(0.1, 0.42, 0.41, 1) forwards;
 }
+
+/* Progress rang graduslari (Brend rangiga moslangan) */
+.html-progress { background: linear-gradient(90deg, #e44d26, #ff7300); box-shadow: 0 0 12px rgba(227, 79, 38, 0.4); }
+.css-progress { background: linear-gradient(90deg, #264de4, #00bfff); box-shadow: 0 0 12px rgba(38, 77, 228, 0.4); }
+.js-progress { background: linear-gradient(90deg, #f7df1e, #ffaa00); box-shadow: 0 0 12px rgba(247, 223, 30, 0.3); }
+.react-progress { background: linear-gradient(90deg, #61dafb, #0055ff); box-shadow: 0 0 12px rgba(97, 218, 251, 0.5); }
+.node-progress { background: linear-gradient(90deg, #3c873a, #99ff33); box-shadow: 0 0 12px rgba(60, 135, 58, 0.4); }
+.mongo-progress { background: linear-gradient(90deg, #47A248, #00ffaa); box-shadow: 0 0 12px rgba(71, 162, 72, 0.4); }
+.postgres-progress { background: linear-gradient(90deg, #336791, #00a2ff); box-shadow: 0 0 12px rgba(51, 103, 145, 0.4); }
+.github-progress { background: linear-gradient(90deg, #777777, #ffffff); box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
+.postman-progress { background: linear-gradient(90deg, #ff6c37, #ff9900); box-shadow: 0 0 12px rgba(255, 108, 55, 0.4); }
+.swagger-progress { background: linear-gradient(90deg, #85ea2d, #a6ff00); box-shadow: 0 0 12px rgba(133, 234, 45, 0.4); }
 
 .progress-label {
   position: absolute;
   right: 0;
-  top: -22px;
+  top: -24px;
   font-size: 0.85rem;
+  font-weight: 700;
   color: #00f2ff;
-  font-weight: bold;
 }
 
-/* Pastki qismdagi qo'shimcha bloklar */
+/* ==========================================
+   5. PASTKI QISM (SOFT SKILLS & TEXT BOX)
+   ========================================== */
 .skills-bottom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  gap: 40px;
 }
 
+/* Soft Skills List */
 .soft-skills-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .soft-skills-list li {
-  margin-bottom: 12px;
-  color: #cbd5e1;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.3s, transform 0.3s;
 }
 
-/* Mobil moslashuvchanlik */
-@media (max-width: 768px) {
+.soft-skills-list li:hover {
+  background: rgba(0, 242, 255, 0.04);
+  transform: translateX(6px);
+  border-color: rgba(0, 242, 255, 0.2);
+}
+
+.bullet-glow {
+  width: 8px;
+  height: 8px;
+  background: #00f2ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00f2ff;
+  flex-shrink: 0;
+}
+
+.soft-skills-list p {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Qo'shimcha Ma'lumot Box */
+.skills-text-box {
+  background: rgba(30, 41, 59, 0.25);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  height: calc(100% - 60px); /* Sarlavha hisobga olingan holda tekislash */
+}
+
+.skills-text-box p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.skills-text-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   6. ANIMATSIYALAR (KEYFRAMES)
+   ========================================== */
+
+/* Progress bar chizig'i animatsiyasi */
+@keyframes loadProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Pastdan yuqoriga kirib kelish effekti */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Karta elementlarining bosqichma-bosqich chiqishi */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+
+/* Sekin pulsatsiya */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 10s ease-in-out infinite;
+}
+
+/* ==========================================
+   7. MEDIA QUERIES (RESPONSIVLIK)
+   ========================================== */
+@media (max-width: 1024px) {
   .skills-container {
-    padding: 30px 20px;
-    margin: 20px;
+    padding: 35px;
   }
   .skills-bottom-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .skills-text-box {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-page-wrapper {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+  .section-title {
+    font-size: 2.3rem;
+    margin-bottom: 35px;
+  }
+  .tech-skills-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .skill-item {
+    padding: 20px;
+  }
+  .sub-title {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
   }
 }

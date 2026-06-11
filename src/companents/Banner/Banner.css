@@ -1,691 +1,785 @@
-/* 1. Global Sozlamalar */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Space+Grotesk:wght@400;600;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+:root {
+  --c-bg: #020617;
+  --c-gold: #f5a623;
+  --c-gold-lt: #ffd166;
+  --c-cyan: #00f2ff;
+  --c-cyan-dim: rgba(0, 242, 255, .15);
+  --c-text: #cbd5e1;
+  --c-text-dim: #64748b;
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.43, 0.195, 0.02, 1.0);
 }
 
-.r {
-  margin-top: 80px;
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 
-/* 2. Asosiy Fon */
-.banner-container {
+/* ── Keyframes ──────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes orbit-1 {
+  from { transform: rotate(0deg) translateX(52%) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(52%) rotate(-360deg); }
+}
+@keyframes orbit-2 {
+  from { transform: rotate(0deg) translateX(72%) rotate(0deg); }
+  to { transform: rotate(-360deg) translateX(72%) rotate(360deg); }
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes shimmer-text {
+  from { background-position: 200% center; }
+  to { background-position: -200% center; }
+}
+@keyframes badge-in {
+  from { opacity: 0; transform: translateY(10px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes tech-in {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes section-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(30px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes stat-scale {
+  0% { transform: scale(.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes border-dance {
+  0%, 100% { border-color: rgba(0, 242, 255, .15); }
+  50% { border-color: rgba(245, 166, 35, .3); }
+}
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sweep-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* ── Page root ──────────────────────────────────────── */
+.page-root {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  padding: 60px 20px;
-  background: radial-gradient(circle at top right, #0a1f2e, #030a0f);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--c-text);
   overflow-x: hidden;
+  background-color: var(--c-bg);
 }
 
-/* 3. Hero Section (Glass Box) */
-.banner-content-two-columns {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  background: rgba(15, 23, 42, 0.6); 
-  backdrop-filter: blur(15px);
-  border-radius: 40px;
-  border: 1px solid rgba(0, 242, 255, 0.15);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-  max-width: 1100px;
-  width: 100%;
-  gap: 50px;
-  transition: 0.4s ease;
-}
-
-.banner-content-two-columns:hover {
-  border-color: rgba(0, 242, 255, 0.4);
-}
-
-/* 4. Profil Rasmi */
-.profile-container {
-  flex: 0 0 auto;
-}
-
-.profile-img {
-  width: 280px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid #00f2ff;
-  box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
-  animation: floatImage 5s ease-in-out infinite;
-  transition: 0.5s ease;
-}
-
-@keyframes floatImage {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-/* 5. Matnlar */
-.text-info {
-  flex: 1;
-  color: #e2e8f0;
-}
-
-.text-info h1 {
-  font-size: 45px;
-  font-weight: 800;
-  margin-bottom: 15px;
-  background: linear-gradient(to right, #ffffff, #00f2ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-info p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #cbd5e1;
-  margin-bottom: 10px;
-}
-
-.text-info span {
-  color: #00f2ff;
-  font-weight: 700;
-}
-
-/* 6. Ikonkalar */
-.home-tech-icons-container {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin-top: 25px;
-}
-
-.home-tech-icon {
-  text-align: center;
-  transition: 0.3s;
-}
-
-.home-tech-icon svg {
-  font-size: 35px;
-  transition: 0.4s;
-}
-
-.home-tech-icon:hover {
-  transform: translateY(-8px);
-}
-
-.home-tech-icon:hover svg {
-  filter: drop-shadow(0 0 10px currentColor);
-}
-
-/* Ikonka Ranglari */
-.home-html-icon { color: #e34f26; }
-.home-css-icon { color: #264de4; }
-.home-js-icon { color: #f7df1e; }
-.home-react-icon { color: #61dafb; }
-.home-node-icon { color: #68a063; }
-.home-mongodb-icon { color: #47A248; }
-.home-github-icon { color: #ffffff; }
-.home-postgres-icon { color: #336791; }
-.home-postman-icon { color: #FF6C37; }
-.home-swagger-icon { color: #19b6b5; }
-
-/* 7. Tugmalar */
-.cta-buttons {
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.btn {
-  padding: 12px 25px;
-  background: rgba(0, 242, 255, 0.1);
-  color: #00f2ff;
-  border: 1px solid #00f2ff;
-  border-radius: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: 0.3s;
-  text-align: center;
-  min-width: 160px;
-}
-
-.btn:hover {
-  background: #00f2ff;
-  color: #030a0f;
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-}
-
-/* 8. KARTALAR - Rasm chiqib ketishini to'g'rilash shu yerda */
-.card-section, .certificate-section, .projects-section {
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 80px;
-  text-align: center;
-}
-
-h2 {
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-}
-
-.card-section, .certificate-cards, .project-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  width: 100%;
-}
-
-.card, .certificate-card, .project-card {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  padding: 25px;
-  color: white;
-  transition: 0.4s;
-  overflow: hidden; /* Ichidagi rasm chiqib ketmaydi */
-  display: flex;
-  flex-direction: column;
-}
-
-.card:hover, .certificate-card:hover, .project-card:hover {
-  transform: translateY(-10px);
-  border-color: #00f2ff;
-}
-
-/* Rasmlarni karta ichiga qamash */
-.certificate-img, .project-img {
-  width: 100%;
-  height: 180px; 
-  object-fit: cover; /* Rasmni to'g'ri kesadi */
-  border-radius: 15px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Hackathon kabi rasmlar uchun maxsus (to'liq ko'rinishi uchun) */
-.certificate-img {
-  object-fit: contain; /* Agar sertifikat yozuvlari ko'rinishi shart bo'lsa */
-  background: #000;
-}
-
-.project-img {
-  border-radius: 50%; /* Sizning kodingizda doira edi */
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 20px;
-  object-fit: cover;
-}
-
-.card-btn {
-  margin-top: auto;
-  padding: 10px 20px;
-  background: #00f2ff;
-  color: #030a0f;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-/* 9. Mukammal Media Queries */
-@media (max-width: 1024px) {
-  .banner-content-two-columns {
-    max-width: 90%;
-    padding: 30px;
-  }
-  .profile-img { width: 220px; height: 220px; }
-}
-
-@media (max-width: 768px) {
-  .banner-content-two-columns {
-    flex-direction: column;
-    text-align: center;
-  }
-  .home-tech-icons-container { justify-content: center; }
-  .cta-buttons { justify-content: center; }
-  .text-info h1 { font-size: 32px; }
-}
-
-@media (max-width: 480px) {
-  .card-section, .certificate-cards, .project-cards {
-    grid-template-columns: 1fr;
-  }
-  .profile-img { width: 180px; height: 180px; }
-  .btn { width: 100%; }
-  .cta-buttons { flex-direction: column; }
-}/* ================= EXTRA SECTION ================= */
-
-.extra-section{
-
-width:100%;
-
-max-width:1200px;
-
-margin-top:90px;
-
-text-align:center;
-
-}
-
-.extra-grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:30px;
-
-}
-
-
-/* CARD STYLE */
-
-.extra-card{
-
-background:
-
-rgba(15,23,42,.65);
-
-backdrop-filter:blur(20px);
-
-border-radius:25px;
-
-padding:30px;
-
-border:
-
-1px solid rgba(0,242,255,.15);
-
-transition:.4s;
-
-position:relative;
-
-overflow:hidden;
-
-text-align:left;
-
-}
-
-
-/* Glow Hover */
-
-.extra-card::before{
-
-content:"";
-
-position:absolute;
-
-width:200%;
-
-height:200%;
-
-background:
-
-radial-gradient(circle,
-rgba(0,242,255,.2),
-transparent 60%);
-
-top:-100%;
-
-left:-100%;
-
-opacity:0;
-
-transition:.5s;
-
-}
-
-.extra-card:hover::before{
-
-opacity:1;
-
-top:-40%;
-
-left:-40%;
-
-}
-
-.extra-card:hover{
-
-transform:translateY(-10px);
-
-border-color:#00f2ff;
-
-box-shadow:
-
-0 25px 50px rgba(0,0,0,.5);
-
-}
-
-
-/* TEXT */
-
-.extra-card h3{
-
-margin-bottom:15px;
-
-font-size:22px;
-
-color:#00f2ff;
-
-}
-
-.extra-card p{
-
-line-height:1.8;
-
-color:#cbd5e1;
-
-}
-
-
-/* LIST */
-
-.extra-card ul{
-
-padding-left:20px;
-
-}
-
-.extra-card li{
-
-margin-bottom:10px;
-
-transition:.3s;
-
-}
-
-.extra-card li:hover{
-
-color:#00f2ff;
-
-transform:translateX(5px);
-
-}
-
-
-
-/* LANGUAGE SPECIAL */
-
-.language-card li{
-
-background:
-
-rgba(30,41,59,.5);
-
-padding:10px;
-
-border-radius:10px;
-
-}
-
-.language-card li:hover{
-
-border:
-
-1px solid #00f2ff;
-
-}
-
-
-/* FUN FACT */
-
-.fun-card li{
-
-font-weight:600;
-
-}
-
-
-/* STORY */
-
-.story-card p{
-
-font-size:1.05rem;
-
-}
-
-
-/* ================= RESPONSIVE ================= */
-
-
-@media(max-width:1024px){
-
-.extra-section{
-
-padding:0 20px;
-
-}
-
-}
-
-
-@media(max-width:768px){
-
-.extra-card{
-
-text-align:center;
-
-}
-
-}
-
-
-@media(max-width:480px){
-
-.extra-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-/* 1. Video Background Sozlamalari */
-.background-video {
-  position: fixed; /* Videoni bir joyda qotiradi */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh; /* Noutbuk ekrani balandligida */
-  object-fit: cover; /* Videoni ekran o'lchamiga moslab kesadi */
-  z-index: -1; /* Hamma narsadan orqada turadi */
-}
-
-/* 2. Video ustidagi qora xira qatlam */
-/* Bu matnlar oq fonda yo'qolib ketmasligi uchun kerak */
-.video-overlay {
+.bg-video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  inset: 0;
+  width: 100%; 
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 50% qoralik */
+  object-fit: cover;
+  z-index: -2;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(2, 6, 23, .95) 0%,
+    rgba(2, 6, 23, .85) 50%,
+    rgba(2, 6, 23, .95) 100%
+  );
   z-index: -1;
 }
 
-/* 3. Banner Container-ni shaffof qilish */
 .banner-container {
   position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(60px, 8vw, 100px) 1.5rem 4rem;
+  gap: clamp(3rem, 6vw, 6rem);
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ── HERO SECTION ───────────────────────────────────── */
+.hero-section {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  gap: 3.5rem;
+  width: 100%;
+  opacity: 0;
+}
+
+.hero-section.in-view {
+  opacity: 1;
+  animation: hero-enter 0.8s var(--ease-out) both;
+}
+
+.hero-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.profile-ring {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.profile-ring__inner {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  padding: 3px;
+  width: 88%;
+  height: 88%;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-ring__orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(0, 242, 255, .35);
+  animation: orbit-1 15s linear infinite;
+}
+
+.profile-ring__orbit::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  background: var(--c-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--c-cyan);
+}
+
+.profile-ring__orbit--2 {
+  inset: -14px;
+  border-color: rgba(245, 166, 35, .25);
+  animation: orbit-2 20s linear infinite;
+}
+
+.profile-ring__orbit--2::after {
+  background: var(--c-gold);
+  box-shadow: 0 0 10px var(--c-gold);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  background: rgba(15, 23, 42, .65);
+  border: 1px solid var(--c-cyan-dim);
+  border-radius: 12px;
+  animation: stat-scale 0.5s var(--ease-out) both;
+  transition: border-color .3s, transform .25s;
+}
+
+.stat-card:hover {
+  border-color: var(--c-gold);
+  transform: translateY(-3px);
+}
+
+.stat-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--c-cyan), var(--c-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--c-text-dim);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* HERO TEXT & BADGES */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  overflow: hidden;
+}
+
+.hero-greeting {
+  font-size: 0.95rem;
+  color: var(--c-text-dim);
+  letter-spacing: 1px;
+  font-weight: 600;
+  animation: badge-in .5s .1s both;
+}
+
+.hero-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  animation: badge-in .5s .2s both;
+}
+
+.hero-name__temur {
+  background: linear-gradient(90deg, #fff 0%, var(--c-gold) 30%, #fff 55%, var(--c-gold) 80%, #fff 100%);
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 4s linear infinite;
+}
+
+.hero-role {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: var(--c-cyan);
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  animation: badge-in .5s .3s both;
+}
+
+.typed-cursor {
+  color: var(--c-gold);
+  animation: cursor-blink 0.9s ease-in-out infinite;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--c-text);
+  max-width: 580px;
+  animation: badge-in .5s .4s both;
+}
+
+.accent {
+  color: var(--c-cyan);
+  font-weight: 700;
+}
+
+/* FIX: Badgeler chiroyli qatorga chiqishi va sinishi uchun */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  animation: badge-in .5s .5s both;
+}
+
+.meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(0, 242, 255, .05);
+  border: 1px solid var(--c-cyan-dim);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+
+/* FIX: Rasmda buzilgan asosiy qism - Grid Flexga o'tkazildi */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  animation: badge-in .5s .6s both;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, .7);
+  border: 1px solid rgba(255, 255, 255, .06);
+  border-radius: 10px;
+  transition: all .25s var(--ease-out);
+  animation: tech-in 0.4s calc(.6s + var(--ti, 0) * .04s) var(--ease-out) both;
+}
+
+.tech-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--c-cyan);
+  background: rgba(15, 23, 42, .9);
+}
+
+.tech-icon { 
+  font-size: 20px; 
+}
+
+.tech-icon--html { color: #e34f26; }
+.tech-icon--css { color: #264de4; }
+.tech-icon--js { color: #f7df1e; }
+.tech-icon--react { color: #61dafb; }
+.tech-icon--node { color: #68a063; }
+.tech-icon--mongo { color: #47a248; }
+.tech-icon--github { color: #ffffff; }
+.tech-icon--postgres { color: #336791; }
+.tech-icon--postman { color: #ff6c37; }
+.tech-icon--swagger { color: #19b6b5; }
+
+.tech-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: badge-in .5s .7s both;
+  margin-top: 5px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all .25s var(--ease-out);
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--c-cyan), #00b4cc);
+  color: #020617;
+  box-shadow: 0 4px 15px rgba(0, 242, 255, .2);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 242, 255, .35);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--c-gold);
+  border: 1px solid var(--c-gold);
+}
+
+.btn--outline:hover {
+  background: rgba(245, 166, 35, .08);
+  transform: translateY(-2px);
+}
+
+/* ── SKILL CARDS ────────────────────────────────────── */
+.skill-cards-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.skill-card {
+  position: relative;
+  padding: 1.8rem 1.5rem;
+  background: rgba(15, 23, 42, .6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 242, 255, .1);
+  border-radius: 16px;
+  text-align: center;
+  animation: card-in 0.5s calc(.1s + var(--si, 0) * .1s) var(--ease-out) both;
+  transition: all .3s var(--ease-out);
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c-cyan);
+  box-shadow: 0 15px 35px rgba(0,0,0,.4);
+}
+
+.skill-card__emoji { font-size: 2.2rem; display: block; margin-bottom: .5rem; }
+.skill-card__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .3rem;
+}
+.skill-card__sub { font-size: .85rem; color: var(--c-text-dim); }
+
+/* ── SECTIONS COMMON ────────────────────────────────── */
+.section {
+  width: 100%;
+  opacity: 0;
+}
+
+.section.in-view {
+  animation: section-up 0.7s var(--ease-out) both;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.section-title__line {
+  display: block;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--c-cyan), var(--c-gold));
+  border-radius: 3px;
+  transition: width 0.8s var(--ease-out);
+}
+.section.in-view .section-title__line { width: 60px; }
+
+/* ── CERTIFICATES ───────────────────────────────────── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.cert-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 242, 255, .08);
+  background: rgba(10, 15, 30, .8);
+  animation: card-in 0.5s calc(.1s + var(--ci, 0) * .1s) var(--ease-out) both;
+  transition: all .4s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c-cyan);
+  box-shadow: 0 15px 35px rgba(0,0,0,.5);
+}
+
+.cert-card__img-wrap {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: all .4s ease;
+}
+
+.cert-card:hover .cert-card__img-wrap {
+  filter: blur(5px);
+  opacity: .15;
+  transform: scale(.9);
+}
+
+.cert-card__img {
+  width: 100%; height: auto;
+  object-fit: contain;
+}
+
+.cert-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(8,12,30,.4), rgba(2,6,23,1));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 60px 20px;
-  background: transparent; /* Fon rasmi o'rniga video ko'rinishi uchun */
-  overflow-x: hidden;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all .35s ease;
 }
 
-/* 4. Glass Box effekti video ustida zo'r ko'rinadi */
-.glass-box {
-  background: rgba(15, 23, 42, 0.4) !important; /* Shaffofroq */
-  backdrop-filter: blur(10px) !important;
+.cert-card:hover .cert-card__overlay { opacity: 1; transform: translateY(0); }
+
+.cert-card__title {
+  color: var(--c-cyan);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: .8rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(0, 242, 255, .2);
 }
 
-/* ================= MEDIA QUERIES (Vidio buzilmasligi uchun) ================= */
+.cert-card__details p { color: #cbd5e1; font-size: .85rem; margin-bottom: .3rem; }
+.cert-card__skills {
+  margin-top: .8rem;
+  background: rgba(0, 242, 255, .05);
+  padding: 10px;
+  border-radius: 8px;
+  border-left: 3px solid var(--c-cyan);
+}
+.cert-card__skills h4 { color: var(--c-cyan); font-size: 11px; text-transform: uppercase; margin-bottom: .2rem; }
+.cert-card__skills p { color: #94a3b8; font-size: .8rem; line-height: 1.4; }
 
-@media (max-width: 1024px) {
-  .background-video {
-    height: 100%; /* Planshetda ham to'liq yopadi */
+/* ── PROJECTS ───────────────────────────────────────── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.project-card {
+  background: rgba(15, 23, 42, .65);
+  border: 1px solid rgba(255, 255, 255, .06);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all .3s ease;
+  animation: card-in 0.5s calc(.1s + var(--pi, 0) * .1s) var(--ease-out) both, border-dance 4s ease-in-out infinite;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c-cyan);
+  box-shadow: 0 15px 35px rgba(0,0,0,.4);
+}
+
+.project-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+
+.project-card__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.project-card__body {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  flex: 1;
+}
+
+.project-card__title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.project-card__desc { font-size: .85rem; color: var(--c-text-dim); line-height: 1.5; flex: 1; }
+
+.project-card__btn {
+  align-self: flex-start;
+  margin-top: .4rem;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--c-cyan), #00b4cc);
+  color: #020617;
+  font-weight: 700;
+  font-size: .8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform .2s;
+}
+
+.project-card__btn:hover { transform: scale(1.03); }
+
+/* ── EXTRA (HIKOYA) ─────────────────────────────────── */
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.extra-card {
+  background: rgba(15, 23, 42, .6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 242, 255, .08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  animation: card-in 0.5s calc(.1s + var(--ei, 0) * .1s) var(--ease-out) both;
+  transition: all .3s ease;
+}
+
+.extra-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--c-gold);
+}
+
+.extra-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: .8rem;
+}
+
+.extra-card p, .extra-card ul {
+  font-size: .9rem;
+  color: var(--c-text);
+  line-height: 1.6;
+}
+
+.extra-card ul {
+  list-style-position: inside;
+  padding-left: 5px;
+}
+
+.extra-card li { margin-bottom: .4rem; }
+
+/* ==========================================================================
+   MUKAMMAL RESPONSIVE OPTIMIZATSIYA (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Planshetlar uchun (Ekrani biroz kichikroq kompyuterlar) */
+@media (max-width: 968px) {
+  .hero-section {
+    grid-template-columns: 1fr; /* Rasm va matn ketma-ket tushadi */
+    gap: 2.5rem;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .hero-text {
+    align-items: center;
+  }
+
+  .hero-meta, .tech-grid, .cta-buttons {
+    justify-content: center;
+  }
+  
+  .hero-desc {
+    max-width: 500px;
   }
 }
 
-@media (max-width: 768px) {
-  /* Mobilda video juda ko'p internet va protsessor yemasligi uchun 
-     ba'zida uni o'rniga rasm qo'yishadi, lekin sizda video tursin desangiz: */
-  .background-video {
-    position: fixed;
-    width: auto;
-    height: 100vh;
-    left: 50%;
-    transform: translateX(-50%); /* Videoni markazda ushlaydi */
+/* Smartfonlar (Mobil telefonlar uchun maxsus eng muhim qism) */
+@media (max-width: 480px) {
+  .banner-container {
+    padding: 45px 12px 30px 12px; /* Ekran chetidagi qisilish yo'qoladi */
+    gap: 2.5rem;
   }
-}
 
-/* Qolgan barcha CSS kodlaringiz (Profil, Cardlar va hokazo) pastdan davom etadi... */
-/* 1. Sertifikatlar Grid-ni markazlashtirish */
-.certificate-grid {
+  .profile-ring {
+    width: 190px;
+    height: 190px; /* Rasm o'lchami telefonga moslashadi */
+  }
+
+  .hero-name {
+    font-size: 2.4rem; /* Sarlavha sig'ishi uchun */
+  }
+
+  .hero-role {
+    font-size: 1.15rem;
+    min-height: 1.8rem;
+  }
+
+  /* Stats cards telefonda juda chiroyli 3 ta ustun bo'lib qoladi */
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .stat-card {
+    padding: 8px 4px;
+    border-radius: 10px;
+  }
+
+  .stat-num {
+    font-size: 1.1rem;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  /* Badgellar telefonda markazlashadi va chiroyli tartiblanadi */
+  .hero-meta {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .meta-badge {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  /* Rasmda buzilgan Tech Grid endi telefonda 2 yoki 3 tadan sig'ib ketadi */
+  .tech-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-}
+    gap: 6px;
+  }
 
-/* 2. Asosiy Karta Stili */
-.cert-card {
-    position: relative;
-    width: 350px;
-    height: 420px;
-    backdrop-filter: blur(10px);
-    border-radius: 28px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid rgba(0, 242, 255, 0.1);
-    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
-}
-#m{
-  height: 1500px;
-}
+  .tech-item {
+    padding: 6px 10px;
+    border-radius: 8px;
+    gap: 6px;
+  }
 
-/* 3. Rasm qutisi va Oq fonni yo'qotish */
-.image-box {
+  .tech-icon {
+    font-size: 16px;
+  }
+
+  .tech-label {
+    font-size: 10px;
+  }
+
+  /* Tugmalar telefonda 100% yonma-yon va to'liq joylashadi */
+  .cta-buttons {
     width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    transition: 0.6s ease;
-}
+    flex-direction: row; 
+    gap: 10px;
+  }
 
-.image-box img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    /* AGAR RASM FONING OQ BO'LSA, PASTDAGI QATORNI YOQING: */
-    /* mix-blend-mode: lighten; */ 
-    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2));
-    transition: 0.6s ease;
-}
-
-/* 4. Hover effekti - Fon rangi o'zgarishi */
-.cert-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    /* Hover bo'lganda fon biroz ranglanadi */
-    background: rgba(0, 242, 255, 0.05); 
-    border-color: #00f2ff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 255, 0.2);
-}
-
-/* 5. Overlay (Ma'lumotlar qismi) */
-.card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom, 
-        rgba(10, 10, 12, 0.1), 
-        rgba(10, 10, 12, 0.95)
-    );
-    backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 30px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.5s ease;
-}
-
-.cert-card:hover .card-overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.cert-card:hover .image-box {
-    filter: blur(10px) grayscale(100%);
-    transform: scale(0.8);
-    opacity: 0.3;
-}
-
-/* 6. Matnlar stili */
-.cert-title {
-    color: #00f2ff;
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-    border-bottom: 2px solid rgba(0, 242, 255, 0.3);
-    padding-bottom: 10px;
-}
-
-.details p {
-    color: #e0e0e0;
-    font-size: 15px;
-    margin-bottom: 8px;
-    text-align: left;
-}
-
-.skills-box {
-    margin-top: 20px;
-    background: rgba(0, 242, 255, 0.05);
-    padding: 15px;
-    border-radius: 15px;
-    border-left: 3px solid #00f2ff;
-    text-align: left;
-}
-
-.skills-box h4 {
-    color: #00f2ff;
-    font-size: 14px;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.skills-box p {
-    color: #bbb;
+  .btn {
+    padding: 11px 12px;
     font-size: 13px;
-    line-height: 1.5;
-}
-
-/* 7. Responsive (Mobillar uchun) */
-@media (max-width: 768px) {
-    .cert-card {
-        width: 100%; /* Mobil telefonda to'liq ekran */
-        max-width: 380px;
-        height: 380px;
-    }
-    .certificate-grid {
-        padding: 0 10px;
-    }
+    min-width: 0;
+  }
 }

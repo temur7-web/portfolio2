@@ -1,357 +1,614 @@
+/* ═══════════════════════════════════════════════════
+   HEADER — Temur Portfolio  |  Ultra Animated v2
+   ═══════════════════════════════════════════════════ */
 
-
-.header img {
-  width: 150px;
-  height: auto;
-  transition: transform 0.4s ease;
+/* ── Design tokens ──────────────────────────────── */
+:root {
+  --c-bg:       #020617;
+  --c-gold:     #f5a623;
+  --c-gold-lt:  #ffd166;
+  --c-cyan:     #00f2ff;
+  --c-text:     #cbd5e1;
+  --h-height:   70px;
+  --ease-back:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.logo:hover {
-  color: #ffea00;
+/* ── Keyframes ──────────────────────────────────── */
+@keyframes hdr-in {
+  from { opacity:0; transform:translateY(-100%); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
-.nav-container {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links {
-  display: flex;
-  gap: 35px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  color: #f1f1f1; /* Oddiy holatda matn rangi oq */
-  text-decoration: none;
-  font-weight: 600; /* Matnni biroz qalinlashtirdim */
-  font-size: 18px;
-  position: relative;
-  transition: all 0.3s ease;
-  letter-spacing: 0.5px; /* Harflar orasidagi masofani biroz kengaytirdim */
-}
-/* --- DESKTOP (ASOSIY HOLAT) --- */
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 102px;
-  background: rgba(2, 6, 23, 0.85);
-  backdrop-filter: blur(12px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 242, 255, 0.1);
-}
-
-.header-container {
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
-
-.nav-links a {
-  color: #cbd5e1;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.nav-links a:hover { color: #00f2ff; }
-
-.mobile-icon, .mobile-dropdown { display: none; } /* Desktopda bularni yashiramiz */
-
-/* --- MEDIA QUERIES (MOBIL UCHUN) --- */
-@media (max-width: 768px) {
-  .nav-desktop { display: none; } /* Desktop menyuni yashiramiz */
-
-  .mobile-icon {
-    display: block;
-    font-size: 2.2rem;
-    color: #00f2ff;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  /* Ekranni to'ldirmaydigan, o'ng tomondan chiqadigan kichik menyu */
-  .mobile-dropdown {
-    display: block;
-    position: absolute;
-    top: 90px; /* Headerdan biroz pastda */
-    right: 20px;
-    width: 250px; /* Ekranni to'ldirmaydi! */
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(0, 242, 255, 0.2);
-    border-radius: 20px;
-    padding: 20px;
-    transform: translateY(-20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .mobile-dropdown.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .mobile-dropdown ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .mobile-dropdown li {
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .mobile-dropdown a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    display: flex;
-    gap: 15px;
-  }
-
-  .mobile-dropdown a span {
-    color: #00f2ff;
-    font-weight: bold;
-    font-size: 0.8rem;
-  }
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 3px; /* Chiziqni biroz qalinlashtirdim */
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -6px; /* Chiziqni biroz pastga tushirdim */
-  background: linear-gradient(90deg, #ffcc00, #ffea00); /* Chiziqqa gradient rang qo‘shdim */
-  transition: width 0.3s ease, transform 0.3s ease;
-  border-radius: 2px; /* Chiziqning burchaklarini biroz yumalotirdim */
-}
-
-.nav-links a:hover {
-  color: #ffea00; /* Hoverda matn rangi sariq bo‘ladi */
-  transform: translateY(-2px); /* Hoverda biroz yuqoriga ko‘tariladi */
-}
-
-.nav-links a:hover::after {
-  width: 70%; /* Chiziq uzunligini 70% qildim, shunda matn uzunligiga mos keladi */
-}
-
-.header a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.header a:hover {
-  color: yellow;
-  transform: scale(1.05);
-}
-
-@keyframes headerGradient {
-  0% {
-    background-position: 0% 50%;
+/* Logo icon: oltin pulslovchi glow */
+@keyframes icon-glow {
+  0%,100% {
+    box-shadow: 0 0 8px var(--c-gold), 0 0 22px rgba(245,166,35,.35),
+                inset 0 0 10px rgba(255,255,255,.08);
   }
   50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+    box-shadow: 0 0 18px var(--c-gold), 0 0 45px rgba(245,166,35,.6),
+                inset 0 0 18px rgba(255,255,255,.14);
   }
 }
 
-/* 1200px */
-@media (max-width: 1200px) {
-  .header {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .nav-links {
-    gap: 30px;
-  }
-
-  .header img {
-    width: 140px;
-  }
+/* Logo icon: yulduzcha aylana */
+@keyframes ring-spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
 }
 
-/* 1024px */
-@media (max-width: 1024px) {
-  .header {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .nav-links {
-    gap: 25px;
-  }
-
-  .header img {
-    width: 130px;
-  }
+/* Logo text: shimmer yorug'lik */
+@keyframes shimmer {
+  from { background-position: 200% center; }
+  to   { background-position:-200% center; }
 }
 
-/* 768px */
+/* Nav linklar kirishi */
+@keyframes nav-in {
+  from { opacity:0; transform:translateY(-14px) scale(.92); }
+  to   { opacity:1; transform:translateY(0)     scale(1);   }
+}
+
+/* Logo silkitish (click da) */
+@keyframes logo-shake {
+  0%   { transform: rotate(0deg)   scale(1);    }
+  20%  { transform: rotate(-8deg)  scale(1.1);  }
+  40%  { transform: rotate( 7deg)  scale(1.12); }
+  60%  { transform: rotate(-5deg)  scale(1.08); }
+  80%  { transform: rotate( 3deg)  scale(1.04); }
+  100% { transform: rotate(0deg)   scale(1);    }
+}
+
+/* Particle uchishi */
+@keyframes particle-fly {
+  0%   { transform:translate(0,0)                      scale(1);   opacity:1; }
+  100% { transform:translate(var(--tx),var(--ty))      scale(0);   opacity:0; }
+}
+
+/* Burger → X animatsiyasi */
+@keyframes bar-to-x-top {
+  from { transform: none; }
+  to   { transform: translateY(8px) rotate(45deg); }
+}
+@keyframes bar-to-x-mid {
+  from { opacity:1; transform: none; }
+  to   { opacity:0; transform: scaleX(0); }
+}
+@keyframes bar-to-x-bot {
+  from { transform: none; }
+  to   { transform: translateY(-8px) rotate(-45deg); }
+}
+@keyframes x-to-bar-top {
+  from { transform: translateY(8px) rotate(45deg); }
+  to   { transform: none; }
+}
+@keyframes x-to-bar-mid {
+  from { opacity:0; transform: scaleX(0); }
+  to   { opacity:1; transform: none; }
+}
+@keyframes x-to-bar-bot {
+  from { transform: translateY(-8px) rotate(-45deg); }
+  to   { transform: none; }
+}
+
+/* Active link underline pulse */
+@keyframes underline-pulse {
+  0%,100% { opacity:.7; transform:translateX(-50%) scaleX(1);   }
+  50%      { opacity:1;  transform:translateX(-50%) scaleX(1.2); }
+}
+
+/* Header border bottom glow */
+@keyframes border-glow {
+  0%,100% { border-bottom-color: rgba(0,242,255,.08); }
+  50%      { border-bottom-color: rgba(245,166,35,.25); }
+}
+
+/* Mobile drawer item kirishi */
+@keyframes drawer-item-in {
+  from { opacity:0; transform:translateX(20px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+
+/* ── Global particle style ──────────────────────── */
+.logo-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: particle-fly 0.65s var(--ease-out) forwards;
+}
+
+/* ── Header shell ───────────────────────────────── */
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1000;
+  height: var(--h-height);
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 242, 255, 0.08);
+  animation: hdr-in 0.55s var(--ease-out) both,
+             border-glow 4s ease-in-out 1s infinite;
+  transition: box-shadow 0.35s ease, transform 0.4s var(--ease-out),
+              background 0.35s ease;
+}
+
+.header--scrolled {
+  background: rgba(2, 6, 23, 0.97);
+  box-shadow: 0 4px 50px rgba(0,0,0,.65),
+              0 1px 0 rgba(245,166,35,.12);
+}
+
+.header--hidden { transform: translateY(-110%); }
+
+/* ── Container ──────────────────────────────────── */
+.header__container {
+  height: 100%;
+  max-width: 1300px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ══════════════════════════════════════════════════
+   LOGO
+   ══════════════════════════════════════════════════ */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  animation: nav-in 0.6s 0.1s both;
+  /* Magnetic — JS tomonidan boshqariladi */
+  transition: transform 0.15s ease;
+  user-select: none;
+}
+
+.header__logo--shake .header__logo-icon {
+  animation: logo-shake 0.55s var(--ease-back) both !important;
+}
+
+/* ── Icon qutisi ── */
+.header__logo-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(145deg, #f5a623, #e8930a);
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  animation: icon-glow 2.8s ease-in-out infinite;
+  transition: transform 0.3s var(--ease-back), border-radius 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.header__logo:hover .header__logo-icon {
+  transform: rotate(-8deg) scale(1.14);
+  border-radius: 14px;
+}
+
+/* T harfi */
+.logo-icon__letter {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0a0f1e;
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+/* Aylanuvchi aylana ring */
+.logo-icon__ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 16px;
+  border: 1.5px dashed rgba(245,166,35,.4);
+  animation: ring-spin 8s linear infinite;
+  pointer-events: none;
+}
+
+.header__logo:hover .logo-icon__ring {
+  border-color: rgba(245,166,35,.9);
+  animation-duration: 1.5s;
+}
+
+/* Ichki yuqori-chap parlash */
+.logo-icon__shine {
+  position: absolute;
+  top: 3px; left: 4px;
+  width: 55%; height: 45%;
+  background: rgba(255,255,255,.3);
+  border-radius: 6px 6px 50% 6px;
+  pointer-events: none;
+}
+
+/* ── Logo matn: "emur" (T icon bilan birikib ko'rinadi) ── */
+.header__logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(90deg,
+    #fff 0%, var(--c-gold) 25%, #fff 50%, var(--c-gold) 75%, #fff 100%);
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3.5s linear infinite;
+  letter-spacing: 0.5px;
+}
+
+/* T harfini ko'rinmas qilamiz — icon bilan ikki marta chiqmasin */
+.logo-text__hidden-t {
+  font-size: 0;      /* Hajmi 0 — visually yo'q */
+  opacity: 0;
+  width: 0;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════
+   DESKTOP NAV
+   ══════════════════════════════════════════════════ */
+.header__nav { display: flex; align-items: center; }
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  padding: 0; margin: 0;
+}
+
+/* Har bir link staggered animatsiya */
+.nav__list li { animation: nav-in 0.5s calc(0.28s + var(--ni,.0) * 0.12s) both; }
+
+.nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--c-text);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 9px;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+/* Hover: ripple background */
+.nav__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.045);
+  border-radius: inherit;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav__link:hover::before { transform: scaleX(1); }
+
+/* Hover glow yoritish */
+.nav__link-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(245,166,35,.18), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.nav__link:hover .nav__link-glow { opacity: 1; }
+
+/* Underline chiziq */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-gold), var(--c-gold-lt), var(--c-gold));
+  border-radius: 2px;
+  transition: width 0.3s var(--ease-out);
+}
+
+.nav__link:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.nav__link:hover::after { width: 50%; }
+
+.nav__link--active {
+  color: var(--c-gold) !important;
+  background: rgba(245,166,35,.08);
+}
+
+.nav__link--active::after {
+  width: 50%;
+  animation: underline-pulse 2s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════
+   CUSTOM HAMBURGER (react-icons o'rniga)
+   ══════════════════════════════════════════════════ */
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,242,255,.05);
+  border: 1px solid rgba(0,242,255,.2);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s var(--ease-back);
+  flex-shrink: 0;
+}
+
+.header__burger:hover {
+  background: rgba(0,242,255,.1);
+  border-color: var(--c-cyan);
+  transform: scale(1.06);
+}
+
+.header__burger--open {
+  background: rgba(245,166,35,.1);
+  border-color: var(--c-gold);
+}
+
+.burger__bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--c-cyan);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: background 0.25s;
+}
+
+.burger__bar:not(:last-child) { margin-bottom: 5px; }
+
+/* Yopiq holatda barlar X ga aylanadi */
+.header__burger--open .burger__bar:nth-child(1) {
+  animation: bar-to-x-top 0.35s var(--ease-back) forwards;
+  background: var(--c-gold);
+}
+.header__burger--open .burger__bar:nth-child(2) {
+  animation: bar-to-x-mid 0.25s ease forwards;
+}
+.header__burger--open .burger__bar:nth-child(3) {
+  animation: bar-to-x-bot 0.35s var(--ease-back) forwards;
+  background: var(--c-gold);
+}
+
+.header__burger:not(.header__burger--open) .burger__bar:nth-child(1) {
+  animation: x-to-bar-top 0.3s var(--ease-out) forwards;
+}
+.header__burger:not(.header__burger--open) .burger__bar:nth-child(2) {
+  animation: x-to-bar-mid 0.3s ease 0.05s forwards;
+}
+.header__burger:not(.header__burger--open) .burger__bar:nth-child(3) {
+  animation: x-to-bar-bot 0.3s var(--ease-out) forwards;
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE OVERLAY
+   ══════════════════════════════════════════════════ */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: transparent;
+  pointer-events: none;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.mobile-overlay--active {
+  background: rgba(0,0,0,.65);
+  pointer-events: auto;
+  backdrop-filter: blur(4px);
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE DRAWER
+   ══════════════════════════════════════════════════ */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: var(--h-height);
+  right: 1rem;
+  width: min(290px, calc(100vw - 2rem));
+  background: rgba(8, 14, 35, 0.98);
+  border: 1px solid rgba(0,242,255,.15);
+  border-radius: 20px;
+  padding: 0;
+  z-index: 950;
+  overflow: hidden;
+  transform: translateY(-16px) scale(0.93);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s var(--ease-back),
+              opacity 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,.7),
+              0 0 0 1px rgba(245,166,35,.06) inset;
+}
+
+.mobile-drawer::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(245,166,35,.15), transparent 65%);
+  pointer-events: none;
+}
+
+.mobile-drawer--active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Drawer tepasi — mini logo */
+.mobile-drawer__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.mobile-drawer__icon {
+  width: 30px; height: 30px;
+  background: var(--c-gold);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 900;
+  color: #020617;
+}
+
+.mobile-drawer__brand {
+  font-size: 17px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, var(--c-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Link ro'yxati */
+.mobile-drawer__list {
+  list-style: none;
+  padding: 10px 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-drawer__item {
+  opacity: 0;
+}
+
+.mobile-drawer--active .mobile-drawer__item {
+  animation: drawer-item-in 0.4s var(--ease-out) var(--delay, 0s) both;
+}
+
+.mobile-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  color: var(--c-text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s, transform 0.2s var(--ease-back);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-drawer__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(245,166,35,.06), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-drawer__link:hover::before { transform: translateX(0); }
+
+.mobile-drawer__link:hover {
+  color: #fff;
+  background: rgba(255,255,255,.05);
+  transform: translateX(5px);
+  border-color: rgba(255,255,255,.06);
+}
+
+.mobile-drawer__link--active {
+  color: var(--c-gold);
+  background: rgba(245,166,35,.1);
+  border-color: rgba(245,166,35,.28);
+}
+
+.mobile-drawer__num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-gold);
+  letter-spacing: 1.2px;
+  opacity: .75;
+  min-width: 18px;
+}
+
+.mobile-drawer__label { flex: 1; }
+
+.mobile-drawer__arrow {
+  font-size: 14px;
+  color: var(--c-text-dim, #64748b);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mobile-drawer__link:hover .mobile-drawer__arrow,
+.mobile-drawer__link--active .mobile-drawer__arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--c-gold);
+}
+
+/* Footer */
+.mobile-drawer__footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255,255,255,.05);
+  font-size: 11px;
+  color: #374151;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .header {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .nav-links {
-    gap: 20px;
-  }
-
-  .nav-links a {
-    font-size: 16px;
-  }
-
-  .header img {
-    width: 120px;
-  }
-
-  .header .logo {
-    width: 160px;
-  }
+  .nav-desktop  { display: none; }
+  .header__burger { display: flex; }
+  .mobile-overlay { display: block; }
+  .mobile-drawer  { display: block; }
 }
 
-/* 625px */
-@media (max-width: 625px) {
-  .header {
-    max-width: 625px;
-    margin: 0 auto;
-    height: auto;
-    flex-direction: column;
-    padding: 15px;
-  }
-
-  .logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    padding: 0;
-  }
-
-  .header img {
-width: 100px;
-  }
-
-  .nav-container {
-    width: 100%;
-  }
-
-  .nav-links {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    top: unset;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background: linear-gradient(to bottom right, #000000, #0f2c3e, #001f3f);
-    z-index: 999;
-    padding: 0;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s ease-in-out;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-  }
-
-  .nav-links a {
-    font-size: 14px;
-    color: #f1f1f1;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    flex: 1;
-    text-align: center;
-    font-weight: 500; /* Kichik ekranlarda matnni biroz yupqalashtirdim */
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -4px;
-    background: linear-gradient(90deg, #ffcc00, #ffea00);
-    transition: width 0.3s ease, transform 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .nav-links a:hover {
-    color: #ffea00;
-    transform: translateY(-2px);
-  }
-
-  .nav-links a:hover::after {
-    width: 50%;
-  }
-}
-
-/* 480px */
 @media (max-width: 480px) {
-  .header {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  :root { --h-height: 62px; }
 
-  .header img {
-    width: 90px;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-  }
+  .header__logo-icon { width: 35px; height: 35px; border-radius: 9px; }
+  .logo-icon__letter { font-size: 17px; }
+  .header__logo-text { font-size: 19px; }
+  .header__burger { width: 40px; height: 40px; }
 }
 
-/* 375px */
-@media (max-width: 375px) {
-  .header {
-    max-width: 375px;
-    margin: 0 auto;
-    padding: 8px;
-  }
-
-  .header img {
-    width: 80px;
-  }
-
-  .nav-links {
-    gap: 0;
-  }
-
-  .nav-links a {
-    font-size: 11px;
-  }
+@media (max-width: 360px) {
+  .header__container { padding-inline: 0.85rem; }
+  .header__logo-text { font-size: 17px; }
+  .mobile-drawer { right: 0.6rem; width: calc(100vw - 1.2rem); }
 }

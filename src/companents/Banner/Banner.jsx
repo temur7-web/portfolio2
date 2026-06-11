@@ -1,289 +1,305 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Banner.css';
 import { IoLogoHtml5 } from 'react-icons/io5';
 import { FaCss3Alt, FaJsSquare, FaNode, FaGithub } from 'react-icons/fa';
 import { SiReact, SiMongodb, SiPostgresql, SiPostman, SiSwagger } from 'react-icons/si';
+import { TbSettingsUp } from "react-icons/tb";
+import { BsCake2 } from "react-icons/bs";
+import { PiLightning, PiStudentBold } from "react-icons/pi";
 
-function Banner() {
+/* ── Typed text hook ── */
+function useTyped(words, speed = 80, pause = 1800) {
+  const [display, setDisplay] = useState('');
+  const [wIdx, setWIdx] = useState(0);
+  const [cIdx, setCIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[wIdx];
+    let timeout;
+    if (!deleting && cIdx <= word.length) {
+      timeout = setTimeout(() => {
+        setDisplay(word.slice(0, cIdx));
+        setCIdx(c => c + 1);
+      }, speed);
+    } else if (!deleting && cIdx > word.length) {
+      timeout = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && cIdx >= 0) {
+      timeout = setTimeout(() => {
+        setDisplay(word.slice(0, cIdx));
+        setCIdx(c => c - 1);
+      }, speed / 2);
+    } else {
+      setDeleting(false);
+      setWIdx(i => (i + 1) % words.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [cIdx, deleting, wIdx, words, speed, pause]);
+
+  return display;
+}
+
+/* ── Counter animation hook ── */
+function useCounter(target, duration = 1800, start = false) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let startTime = null;
+    const step = (ts) => {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      setVal(Math.floor(progress * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [start, target, duration]);
+  return val;
+}
+
+/* ── Intersection observer hook ── */
+function useInView(threshold = 0.2) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+}
+
+const TECH = [
+  { Icon: IoLogoHtml5, label: 'HTML5', cls: 'html' },
+  { Icon: FaCss3Alt, label: 'CSS3', cls: 'css' },
+  { Icon: FaJsSquare, label: 'JavaScript', cls: 'js' },
+  { Icon: SiReact, label: 'React', cls: 'react' },
+  { Icon: FaNode, label: 'Node.js', cls: 'node' },
+  { Icon: SiMongodb, label: 'MongoDB', cls: 'mongo' },
+  { Icon: FaGithub, label: 'Github', cls: 'github' },
+  { Icon: SiPostgresql, label: 'PostgreSQL', cls: 'postgres' },
+  { Icon: SiPostman, label: 'Postman', cls: 'postman' },
+  { Icon: SiSwagger, label: 'Swagger', cls: 'swagger' },
+];
+
+const CERTS = [
+  {
+    img: '/img.png', alt: 'Node.js',
+    title: 'Node.js Sertifikati',
+    kurs: 'Full Stack Dev', platforma: 'Udemy', sana: '2024',
+    desc: 'REST API, Express.js, MongoDB va Backend arxitekturasi.',
+  },
+  {
+    img: '/png.png', alt: 'React',
+    title: 'React Sertifikati',
+    kurs: 'React Basics', platforma: 'Coursera', sana: '2024',
+    desc: 'Hooks, State Management, Router va UI komponentlar.',
+  },
+  {
+    img: '/Gemini_Generated_Image_jl51hmjl51hmjl51.png', alt: 'Hackathon',
+    title: 'Hackathon 1-o\'rin',
+    tadbir: 'Web Dev Hackathon', sana: '2025',
+    desc: 'Teamwork, Fast Coding va Frontend yechimlar.',
+  },
+];
+
+const PROJECTS = [
+  { img: '/olcha.png', alt: 'Olcha.uz', title: 'Olcha.uz klon', desc: 'E-commerce dizayni va funksional kart tizimi.', href: 'https://olcha.uz' },
+  { img: '/uzum.png', alt: 'UZM', title: 'UZM Market', desc: 'Mahsulotlar katalogi va foydalanuvchi interfeysi.', href: 'https://uzum.uz' },
+  { img: '/asaxiy.jpg', alt: 'Asaxiy', title: 'Asaxiy Klon', desc: 'Sayt dizayni, search filter va responsive layout.', href: 'https://asaxiy.uz' },
+];
+
+const STORY = [
+  { cls: 'story', title: 'Qanday Boshlaganman', type: 'p',
+    body: 'Dasturlashni oddiy HTML sahifalar yaratishdan boshladim. Bugun esa React va Node.js orqali real loyihalar ustida ishlayapman. Har kuni yangi texnologiya o\'rganish mening asosiy maqsadim.' },
+  { cls: 'work', title: 'Ishlash Usulim', type: 'ul',
+    items: ['Clean Code yozish.', 'UX va Performance birinchi o\'rinda.', 'API-first Backend.', 'Team bilan tez ishlash.'] },
+  { cls: 'lang', title: 'Tillar', type: 'ul',
+    items: ["O'zbek — Native", 'English — Intermediate', 'Japanese — Learning 🇯🇵'] },
+];
+
+function StatCard({ label, target, suffix = '+', inView }) {
+  const val = useCounter(target, 1600, inView);
   return (
-    <div className="r">
-      <div className="banner-container">
-
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="background-video"
-        >
-          <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
-          Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
-        </video>
-        <div className="banner-content-two-columns glass-box">
-          <div className="profile-container">
-            <img src="ttem.jpg" alt="Temur" className="profile-img" />
-          </div>
-
-          <div className="text-info">
-            <h1>Salom, meni ismim <span>Temur</span></h1>
-            <p>
-              Men <span>veb-dasturchiman</span> va zamonaviy{' '}
-              <span>veb-saytlar</span> yarataman.
-            </p>
-            <p>
-              <strong>Yoshim:</strong> 17 yosh
-            </p>
-            <p>
-              <strong>Ta'lim:</strong> ALGARITIM Full Stack Dasturchi kursi (2024)
-            </p>
-            <div className="home-tech-icons">
-              <div className="home-tech-icons-container">
-                <div className="home-tech-icon">
-                  <IoLogoHtml5 className="home-html-icon" />
-                  <p>HTML5</p>
-                </div>
-                <div className="home-tech-icon">
-                  <FaCss3Alt className="home-css-icon" />
-                  <p>CSS3</p>
-                </div>
-                <div className="home-tech-icon">
-                  <FaJsSquare className="home-js-icon" />
-                  <p>JavaScript</p>
-                </div>
-                <div className="home-tech-icon">
-                  <SiReact className="home-react-icon" />
-                  <p>React</p>
-                </div>
-                <div className="home-tech-icon">
-                  <FaNode className="home-node-icon" />
-                  <p>Node.js</p>
-                </div>
-                <div className="home-tech-icon">
-                  <SiMongodb className="home-mongodb-icon" />
-                  <p>MongoDB</p>
-                </div>
-                <div className="home-tech-icon">
-                  <FaGithub className="home-github-icon" />
-                  <p>Github</p>
-                </div>
-                <div className="home-tech-icon">
-                  <SiPostgresql className="home-postgres-icon" />
-                  <p>Postgresql</p>
-                </div>
-                <div className="home-tech-icon">
-                  <SiPostman className="home-postman-icon" />
-                  <p>Postman</p>
-                </div>
-                <div className="home-tech-icon">
-                  <SiSwagger className="home-swagger-icon" />
-                  <p>Swagger</p>
-                </div>
-              </div>
-            </div>
-            <p>
-              <strong>Tajriba:</strong> 1 yil
-            </p>
-            <div className="cta-buttons">
-              <Link to="/about" className="btn">
-                Men haqimda
-              </Link>
-              <Link to="/projects" className="btn">
-                Loyihalarim
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Loyiha Cardlari */}
-        <div className="card-section">
-          <div className="card">
-            <h3>Frontend</h3>
-            <p>HTML, CSS, JS, React</p>
-          </div>
-          <div className="card">
-            <h3>Backend</h3>
-            <p>Node.js, Express, MongoDB</p>
-          </div>
-
-        </div>
-
-        {/* Sertifikatlar bo'limi */}
-   <div className="certificate-section">
-          <h2>Sertifikatlarim</h2>
-          <div className="certificate-grid">
-            
-            {/* Node.js Certificate */}
-            <div className="cert-card">
-              <div className="image-box">
-                <img src="/img.png" alt="Node.js" />
-              </div>
-              <div className="card-overlay">
-                <h3 className="cert-title">Node.js Sertifikati</h3>
-                <div className="details">
-                  <p><strong>Kurs:</strong> Full Stack Dev</p>
-                  <p><strong>Platforma:</strong> Udemy</p>
-                  <p><strong>Sana:</strong> 2024</p>
-                </div>
-                <div className="skills-box">
-                  <h4>O'rgandim:</h4>
-                  <p>REST API, Express.js, MongoDB va Backend arxitekturasi.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* React Certificate */}
-            <div className="cert-card">
-              <div className="image-box">
-                <img src="/png.png" alt="React" />
-              </div>
-              <div className="card-overlay">
-                <h3 className="cert-title">React Sertifikati</h3>
-                <div className="details">
-                  <p><strong>Kurs:</strong> React Basics</p>
-                  <p><strong>Platforma:</strong> Coursera</p>
-                  <p><strong>Sana:</strong> 2024</p>
-                </div>
-                <div className="skills-box">
-                  <h4>O'rgandim:</h4>
-                  <p>Hooks, State Management, Router va UI komponentlar.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Hackathon Certificate */}
-            <div className="cert-card">
-              <div className="image-box">
-                <img  src="/Gemini_Generated_Image_jl51hmjl51hmjl51.png" alt="Hackathon" />
-              </div>
-              <div className="card-overlay">
-                <h3 className="cert-title">Hackathon 1-o'rin</h3>
-                <div className="details">
-                  <p><strong>Tadbir:</strong> Web Dev Hackathon</p>
-                  <p><strong>Sana:</strong> 2025</p>
-                </div>
-                <div className="skills-box">
-                  <h4>O'rgandim:</h4>
-                  <p>Teamwork, Fast Coding va Frontend yechimlar.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Qilgan saytlarim bo‘limi */}
-        <div className="projects-section">
-          <h2>Qilgan saytlarim</h2>
-          <div className="project-cards">
-            <div className="card project-card">
-              <img src="/olcha.png" alt="Olcha.uz" className="project-img" />
-              <h3>Olcha.uz klon</h3>
-              <p>E-commerce dizayni va funksional kart tizimi.</p>
-              <a
-                href="https://olcha.uz"
-                className="card-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ko‘rish
-              </a>
-            </div>
-
-            <div className="card project-card">
-              <img src="/uzum.png" alt="UZM Market" className="project-img" />
-              <h3>UZM Market</h3>
-              <p>Mahsulotlar katalogi va foydalanuvchi interfeysi.</p>
-              <a
-                href="https://uzum.uz"
-                className="card-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ko‘rish
-              </a>
-            </div>
-
-            <div className="card project-card">
-              <img src="/asaxiy.jpg" alt="Asaxiy" className="project-img" />
-              <h3>Asaxiy Klon</h3>
-              <p>Sayt dizayni, search filter va responsive layout.</p>
-              <a
-                href="https://asaxiy.uz"
-                className="card-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ko‘rish
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="extra-section">
-
-          <h2>Developer Hikoyam</h2>
-
-          <div className="extra-grid">
-
-            <div className="extra-card story-card">
-
-              <h3>Qanday Boshlaganman</h3>
-
-              <p>
-                Dasturlashni oddiy HTML sahifalar yaratishdan boshladim.
-                Bugun esa React va Node.js orqali real loyihalar ustida ishlayapman.
-                Har kuni yangi texnologiya o‘rganish mening asosiy maqsadim.
-              </p>
-
-            </div>
-
-
-            <div className="extra-card work-card">
-
-              <h3>Ishlash Usulim</h3>
-
-              <ul>
-
-                <li>Clean Code yozish.</li>
-
-                <li>UX va Performance birinchi o‘rinda.</li>
-
-                <li>API-first Backend.</li>
-
-                <li>Team bilan tez ishlash.</li>
-
-              </ul>
-
-            </div>
-
-
-            <div className="extra-card language-card">
-
-              <h3>Tillar</h3>
-
-              <ul>
-
-                <li>O‘zbek — Native</li>
-
-                <li>English — Intermediate</li>
-
-                <li>Japanese — Learning 🇯🇵</li>
-
-              </ul>
-
-            </div>
-
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-
+    <div className="stat-card">
+      <span className="stat-num">{val}{suffix}</span>
+      <span className="stat-label">{label}</span>
     </div>
   );
 }
 
-export default Banner;
+export default function Banner() {
+  const typed = useTyped(['Veb-dasturchi', 'Frontend Dev', 'Backend Dev', 'Full Stack Dev']);
+  const [statsRef, statsInView] = useInView(0.3);
+  const [certsRef, certsInView] = useInView(0.1);
+  const [projRef, projInView] = useInView(0.1);
+  const [extraRef, extraInView] = useInView(0.1);
+  const [heroRef, heroInView] = useInView(0.1);
+
+  return (
+    <div className="page-root">
+      <video autoPlay muted loop playsInline className="bg-video" aria-hidden="true">
+        <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+      </video>
+      <div className="bg-overlay" aria-hidden="true" />
+
+      <main className="banner-container">
+        
+        {/* ══════════ HERO ══════════ */}
+        <section className={`hero-section ${heroInView ? 'in-view' : ''}`} ref={heroRef} aria-label="Hero">
+          <div className="hero-profile">
+            <div className="profile-ring">
+              <div className="profile-ring__inner">
+                <img src="ttem.jpg" alt="Temur" className="profile-img" />
+              </div>
+              <div className="profile-ring__orbit" aria-hidden="true" />
+              <div className="profile-ring__orbit profile-ring__orbit--2" aria-hidden="true" />
+            </div>
+
+            <div className="hero-stats" ref={statsRef}>
+              <StatCard label="Tajriba (yil)" target={1} suffix="+" inView={statsInView} />
+              <StatCard label="Loyihalar" target={12} suffix="+" inView={statsInView} />
+              <StatCard label="Texnologiya" target={10} suffix="+" inView={statsInView} />
+            </div>
+          </div>
+
+          <div className="hero-text">
+            <p className="hero-greeting">👋 Salom, men</p>
+            <h1 className="hero-name">
+              <span className="hero-name__temur">Temur</span>
+            </h1>
+            <h2 className="hero-role">
+              <span className="typed-text" aria-live="polite">{typed}</span>
+              <span className="typed-cursor" aria-hidden="true">|</span>
+            </h2>
+            <p className="hero-desc">
+              Zamonaviy <span className="accent">veb-saytlar</span> yarataman —
+              chiroyli dizayn va kuchli <span className="accent">backend</span> bilan.
+            </p>
+
+            {/* Tozalangan Meta qismi */}
+            <div className="hero-meta">
+              <span className="meta-badge"><BsCake2 /> 17 yosh</span>
+              <span className="meta-badge"><PiStudentBold /> ALGORITM Full Stack 2024</span>
+              <span className="meta-badge"><PiLightning /> 1 yil tajriba</span>
+            </div>
+
+            <div className="tech-grid" role="list" aria-label="Texnologiyalar">
+              {TECH.map(({ Icon, label, cls }, i) => (
+                <div
+                  key={cls}
+                  className="tech-item"
+                  role="listitem"
+                  style={{ '--ti': i }}
+                  title={label}
+                >
+                  <Icon className={`tech-icon tech-icon--${cls}`} aria-hidden="true" />
+                  <span className="tech-label">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="cta-buttons">
+              <Link to="/about" className="btn btn--primary">Men haqimda</Link>
+              <Link to="/projects" className="btn btn--outline">Loyihalarim</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ SKILLS CARDS (Emojilar qo'shildi) ══════════ */}
+        <section className="skill-cards-section" aria-label="Ko'nikmalar">
+          {[
+            { emoji: '', title: 'Frontend', sub: 'HTML · CSS · JS · React' },
+            { emoji: '', title: 'Backend', sub: 'Node.js · Express · MongoDB' },
+          ].map((c, i) => (
+            <div className="skill-card" key={c.title} style={{ '--si': i }}>
+              <span className="skill-card__emoji">{c.emoji}</span>
+              <h3 className="skill-card__title">{c.title}</h3>
+              <p className="skill-card__sub">{c.sub}</p>
+              <div className="skill-card__glow" aria-hidden="true" />
+            </div>
+          ))}
+        </section>
+
+        {/* ══════════ SERTIFIKATLAR ══════════ */}
+        <section className={`section certs-section ${certsInView ? 'in-view' : ''}`} ref={certsRef} aria-label="Sertifikatlar">
+          <h2 className="section-title">
+            <span>Sertifikatlarim</span>
+            <span className="section-title__line" aria-hidden="true" />
+          </h2>
+          <div className="cert-grid">
+            {CERTS.map((c, i) => (
+              <article className="cert-card" key={c.title} style={{ '--ci': i }} aria-label={c.title}>
+                <div className="cert-card__img-wrap">
+                  <img src={c.img} alt={c.alt} className="cert-card__img" loading="lazy" />
+                </div>
+                <div className="cert-card__overlay">
+                  <h3 className="cert-card__title">{c.title}</h3>
+                  <div className="cert-card__details">
+                    {c.kurs && <p><strong>Kurs:</strong> {c.kurs}</p>}
+                    {c.tadbir && <p><strong>Tadbir:</strong> {c.tadbir}</p>}
+                    {c.platforma && <p><strong>Platforma:</strong> {c.platforma}</p>}
+                    <p><strong>Sana:</strong> {c.sana}</p>
+                  </div>
+                  <div className="cert-card__skills">
+                    <h4>O'rgandim:</h4>
+                    <p>{c.desc}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ══════════ LOYIHALAR ══════════ */}
+        <section className={`section projects-section ${projInView ? 'in-view' : ''}`} ref={projRef} aria-label="Loyihalar">
+          <h2 className="section-title">
+            <span>Qilgan saytlarim</span>
+            <span className="section-title__line" aria-hidden="true" />
+          </h2>
+          <div className="project-grid">
+            {PROJECTS.map((p, i) => (
+              <article className="project-card" key={p.title} style={{ '--pi': i }}>
+                <div className="project-card__img-wrap">
+                  <img src={p.img} alt={p.alt} className="project-card__img" loading="lazy" />
+                  <div className="project-card__img-overlay" aria-hidden="true" />
+                </div>
+                <div className="project-card__body">
+                  <h3 className="project-card__title">{p.title}</h3>
+                  <p className="project-card__desc">{p.desc}</p>
+                  <a href={p.href} className="project-card__btn" target="_blank" rel="noopener noreferrer">
+                    Ko'rish →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ══════════ HIKOYA ══════════ */}
+        <section className={`section extra-section ${extraInView ? 'in-view' : ''}`} ref={extraRef} aria-label="Developer hikoyam">
+          <h2 className="section-title">
+            <span>Developer Hikoyam</span>
+            <span className="section-title__line" aria-hidden="true" />
+          </h2>
+          <div className="extra-grid">
+            {STORY.map((s, i) => (
+              <div className={`extra-card extra-card--${s.cls}`} key={s.title} style={{ '--ei': i }}>
+                <h3>{s.title}</h3>
+                {s.type === 'p'
+                  ? <p>{s.body}</p>
+                  : <ul>{s.items.map(it => <li key={it}>{it}</li>)}</ul>
+                }
+                <div className="extra-card__glow" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+      </main>
+    </div>
+  );
+}

@@ -1,127 +1,374 @@
-/* About.css */
+/* ==========================================
+   1. UMUMIY SAHIFA VA FON SOZLAMALARI
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* 1. Umumiy sahifa sozlamalari */
 .about-page {
+  position: relative;
   min-height: 100vh;
-  background: radial-gradient(circle at top right, #071624, #02060a);
-  color: #e2e8f0;
+  width: 100%;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  /* Tepadan Header uchun katta joy tashlaymiz */
-  padding: 120px 5% 60px 5%; 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Tepaga yopishib qolmasligi uchun */
+  color: #f1f5f9;
+  padding: 120px 4% 60px 4%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: #030712; /* Video yuklanguncha zaxira fon */
 }
 
-.about-container {
-  max-width: 1300px;
+/* Fon Videosi - To'liq ekran va qat'iy */
+.background-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Videoning ustidan quyuq va neonli effekt berish */
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(0, 242, 255, 0.07), transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.07), transparent 50%),
+              rgba(3, 7, 18, 0.65); /* Videoni o'qish qulay bo'lishi uchun to'q rangli qatlam */
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ==========================================
+   2. BENTO GRID ARXITEKTURASI
+   ========================================== */
+.about-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Oradagi masofani kattalashtirdik */
-  gap: 30px; 
+  gap: 25px;
   grid-template-areas: 
     "profile profile bio"
     "tech goals bio"
     "tech exp exp";
 }
 
-/* 2. Harflar va Matnlar stili */
-.bento-item h1, .bento-item h3 {
-  letter-spacing: 1px; /* Harflar orasi ochiq */
-  margin-bottom: 15px;
-}
+/* Alohida joylashuv konfiguratsiyalari */
+.main-profile { grid-area: profile; }
+.bio-card { grid-area: bio; }
+.tech-card { grid-area: tech; }
+.edu-card { grid-area: exp; }
+.goals-card { grid-area: goals; }
 
-.bento-item p, .bento-item li, .exp-item {
-  font-size: 1.1rem; /* Harflarni kattalashtirdik */
-  line-height: 1.8; /* Qatorlar orasi ochiq */
-  letter-spacing: 0.5px; 
-  color: #cbd5e1;
-}
-
-/* 3. Bento Bloklar */
+/* ==========================================
+   3. PREMIUM GLASSMORPHISM (BLOKLAR STILI)
+   ========================================== */
 .bento-item {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 242, 255, 0.15);
-  border-radius: 30px;
-  padding: 40px;
-  transition: all 0.4s ease;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
 }
 
 .bento-item:hover {
-  border-color: rgba(0, 242, 255, 0.5);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  border-color: rgba(0, 242, 255, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 242, 255, 0.15), 
+              0 0 50px -10px rgba(99, 102, 241, 0.1);
 }
 
-/* 4. TEXNOLOGIYA HOVERLARI (O'Z RANGI) */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.tech-tag {
-  background: rgba(30, 41, 59, 0.4);
-  padding: 15px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-}
-
-/* Har biriga o'zining rangini beramiz */
-/* HTML - To'q sariq */
-.tech-tag:nth-child(1):hover { color: #E34F26; border-color: #E34F26; background: rgba(227, 79, 38, 0.1); }
-/* CSS - Moviy */
-.tech-tag:nth-child(2):hover { color: #1572B6; border-color: #1572B6; background: rgba(21, 114, 182, 0.1); }
-/* JS - Sariq */
-.tech-tag:nth-child(3):hover { color: #F7DF1E; border-color: #F7DF1E; background: rgba(247, 223, 30, 0.1); }
-/* React - Havorang */
-.tech-tag:nth-child(4):hover { color: #61DAFB; border-color: #61DAFB; background: rgba(97, 218, 251, 0.1); }
-/* Node - Yashil */
-.tech-tag:nth-child(5):hover { color: #339933; border-color: #339933; background: rgba(51, 153, 51, 0.1); }
-/* MongoDB - To'q yashil */
-.tech-tag:nth-child(6):hover { color: #47A248; border-color: #47A248; background: rgba(71, 162, 72, 0.1); }
-/* PostgreSQL - Ko'k */
-.tech-tag:nth-child(7):hover { color: #336791; border-color: #336791; background: rgba(51, 103, 145, 0.1); }
-/* Postman - To'q qizil/sariq */
-.tech-tag:nth-child(8):hover { color: #FF6C37; border-color: #FF6C37; background: rgba(255, 108, 55, 0.1); }
-/* Swagger - Limon rang */
-.tech-tag:nth-child(9):hover { color: #85EA2D; border-color: #85EA2D; background: rgba(133, 234, 45, 0.1); }
-
-/* 5. Profil va Boshqalar */
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 4px solid #00f2ff;
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-}
-
-.profile-info h1 {
-  font-size: 3rem;
+/* Sarlavhalar va Matnlar */
+.bento-item h1 {
+  font-size: 2.8rem;
   font-weight: 800;
-  margin: 0;
-  background: linear-gradient(to right, #fff, #00f2ff);
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #ffffff 40%, #00f2ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #00f2ff !important;
-  font-weight: 600;
+.bento-item h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
 }
 
-/* 6. Media So'rovlar (Mobil uchun) */
-@media (max-width: 1024px) {
+.tech-icon-color {
+  color: #00f2ff;
+}
+
+.bento-item p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 15px;
+}
+
+.section-desc {
+  font-size: 0.95rem !important;
+  color: #94a3b8 !important;
+  margin-top: -10px;
+  margin-bottom: 20px !important;
+}
+
+/* ==========================================
+   4. ELEMENTLAR DETALIZATSIYASI
+   ========================================== */
+
+/* Profil qismi */
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.img-glow-wrapper {
+  position: relative;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #00f2ff, #6366f1);
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.25);
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #00f2ff !important;
+  font-weight: 600;
+  margin: 0 !important;
+}
+
+.location-text {
+  font-size: 0.95rem !important;
+  color: #94a3b8;
+  margin: 4px 0 15px 0 !important;
+}
+
+/* Ijtimoiy tarmoqlar va Tugma */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-links a {
+  color: #94a3b8;
+  font-size: 1.4rem;
+  transition: color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.social-links a:hover {
+  color: #00f2ff;
+  transform: scale(1.15);
+}
+
+.cv-btn {
+  background: linear-gradient(135deg, rgba(0, 242, 255, 0.15), rgba(99, 102, 241, 0.15));
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem !important;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.cv-btn:hover {
+  background: linear-gradient(135deg, #00f2ff, #6366f1) !important;
+  color: #030712 !important;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+  transform: translateY(-2px) !important;
+}
+
+/* Mentor qutisi */
+.mentor-box {
+  margin-top: 25px;
+  padding: 15px 20px;
+  background: rgba(99, 102, 241, 0.08);
+  border-left: 4px solid #6366f1;
+  border-radius: 4px 12px 12px 4px;
+}
+
+.mentor-note {
+  font-size: 0.98rem !important;
+  margin: 0 !important;
+  font-style: italic;
+}
+
+/* Ta'lim & Tajriba Timeline stili */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 15px;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.exp-item {
+  position: relative;
+}
+
+.exp-dot {
+  position: absolute;
+  left: -22px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00f2ff;
+  box-shadow: 0 0 10px #00f2ff;
+}
+
+.exp-content strong {
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.exp-content p {
+  font-size: 0.95rem !important;
+  margin: 5px 0 0 0 !important;
+  color: #94a3b8 !important;
+}
+
+/* Kelajak maqsadlari ro'yxati */
+.goals-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.goals-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.goal-icon {
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+/* ==========================================
+   5. TEXNOLOGIYALAR GRID & PROFESSIONAL HOVERLAR
+   ========================================== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 10px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+}
+
+.tech-tag svg {
+  font-size: 1.6rem;
+}
+
+/* To'liq moslashtirilgan Hover effektlari */
+.html-tag:hover { color: #E34F26; border-color: #E34F26; background: rgba(227, 79, 38, 0.08); transform: translateY(-3px); }
+.css-tag:hover { color: #1572B6; border-color: #1572B6; background: rgba(21, 114, 182, 0.08); transform: translateY(-3px); }
+.js-tag:hover { color: #F7DF1E; border-color: #F7DF1E; background: rgba(247, 223, 30, 0.08); transform: translateY(-3px); }
+.react-tag:hover { color: #61DAFB; border-color: #61DAFB; background: rgba(97, 218, 251, 0.08); transform: translateY(-3px); }
+.node-tag:hover { color: #339933; border-color: #339933; background: rgba(51, 153, 51, 0.08); transform: translateY(-3px); }
+.mongo-tag:hover { color: #47A248; border-color: #47A248; background: rgba(71, 162, 72, 0.08); transform: translateY(-3px); }
+.postgres-tag:hover { color: #336791; border-color: #336791; background: rgba(51, 103, 145, 0.08); transform: translateY(-3px); }
+.postman-tag:hover { color: #FF6C37; border-color: #FF6C37; background: rgba(255, 108, 55, 0.08); transform: translateY(-3px); }
+.swagger-tag:hover { color: #85EA2D; border-color: #85EA2D; background: rgba(133, 234, 45, 0.08); transform: translateY(-3px); }
+
+/* ==========================================
+   6. ANIMATSIYALAR (KEYFRAMES)
+   ========================================== */
+
+/* Yuklanish animatsiyasi */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Har bir blok uchun ketma-ketlik kechikishi (Stagger effect) */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+.delay-5 { animation-delay: 0.7s; }
+
+/* Sekin pulsatsiya (Orqa fon nurlari uchun) */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 8s ease-in-out infinite;
+}
+
+/* ==========================================
+   7. RESPONSIVE (RESPONSIVLIK)
+   ========================================== */
+@media (max-width: 1100px) {
   .about-container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
@@ -129,94 +376,40 @@
       "bio bio"
       "tech goals"
       "exp exp";
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .about-page { padding-top: 100px; }
+  .about-page {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+
   .about-container {
     grid-template-columns: 1fr;
-    grid-template-areas: "profile" "bio" "tech" "goals" "exp";
-  }
-  .profile-wrapper { flex-direction: column; text-align: center; }
-}/* About.css */
-
-.about-page {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-  /* Fon shaffof bo'lishi shart, aks holda video ko'rinmaydi */
-  background: transparent !important; 
-}
-
-/* VIDEO SOZLAMALARI - Eng muhim qismi */
-.background-video {
-  position: fixed !important; /* Sahifa skrol bo'lganda ham o'rnida qoladi */
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important; /* Markazga tekislaydi */
-  
-  /* Ekran qanchalik kichik bo'lmasin, video o'lchami ekrandan kichik bo'lmaydi */
-  min-width: 100% !important;
-  min-height: 100% !important;
-  
-  /* Video nisbatini buzmasdan butun ekranni qoplaydi */
-  object-fit: cover !important; 
-  
-  /* Barcha elementlardan orqada turadi */
-  z-index: -1 !important; 
-  
-  /* Ba'zi brauzerlar uchun qora fon (zaxira) */
-  background-color: #020617;
-}
-
-/* Kontent videoni ustida ko'rinishi uchun */
-.about-container {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 20px;
-  display: grid;
-  /* Bento grid uslubi */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-/* 775px dan kichik bo'lganda grid va video boshqaruvi */
-@media (max-width: 775px) {
-  .background-video {
-    /* Mobil qurilmalarda video "siqilib" qolmasligi uchun */
-    width: 100vw !important;
-    height: 100vh !important;
-    position: fixed !important;
+    grid-template-areas: 
+      "profile" 
+      "bio" 
+      "tech" 
+      "goals" 
+      "exp";
   }
 
-  .about-container {
-    grid-template-columns: 1fr !important; /* Hammasi bitta ustun */
-    padding: 80px 15px;
+  .profile-wrapper {
+    flex-direction: column;
+    text-align: center;
   }
-  
+
+  .social-links {
+    justify-content: center;
+  }
+
   .bento-item {
-    width: 100% !important;
-    margin-bottom: 10px;
+    padding: 25px;
   }
-}
 
-/* Bento bloklari uchun Glassmorphism (1-rasmdagi effekt) */
-.bento-item {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 242, 255, 0.15);
-  border-radius: 24px;
-  padding: 30px;
-  color: white;
-  transition: 0.3s ease;
-}
-
-.bento-item:hover {
-  border-color: rgba(0, 242, 255, 0.4);
-  transform: translateY(-5px);
+  .bento-item h1 {
+    font-size: 2.2rem;
+  }
 }

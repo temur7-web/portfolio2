@@ -1,56 +1,110 @@
-/* Projects.css */
-
-.portfolio-premium-wrapper {
-  background: radial-gradient(circle at 0% 0%, #0f172a 0%, #020617 100%);
-  padding: 100px 5%;
-  color: white;
+/* ==========================================
+   1. GLOBAL SAHIFA STRUKTURASI
+   ========================================== */
+.r {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #020617; /* Video yuklanguncha About bilan bir xil to'q fon */
 }
 
+/* Fon Videosi - To'liq ekran qotirilgan */
+.background-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Video ustidagi premium qorong'u parda (Xuddi About sahifangizdek to'q qiladi) */
+.video-overlay-projects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* Atrof to'q ko'k-qora, o'rtasi esa video biroz shaffof ko'rinadigan gradient */
+  background: radial-gradient(circle at center, rgba(3, 7, 18, 0.5) 0%, #020617 95%);
+  z-index: -1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Asosiy Kontent O'rami */
+.portfolio-premium-wrapper {
+  background: transparent !important; /* Fonni mutloq shaffof qilamiz, overlay ko'rinsishi uchun */
+  padding: 100px 6% 60px 6%;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==========================================
+   2. SARLAVHA SOZLAMALARI (ABOUT BILAN BIR XIL)
+   ========================================== */
 .header-content {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 65px;
 }
 
 .main-title {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #fff 0%, #00f2ff 100%);
+  background: linear-gradient(135deg, #ffffff 40%, #00f2ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
 }
 
 .subtitle {
-  color: #94a3b8;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
+  color: #64748b;
+  font-size: 1.15rem;
+  font-weight: 400;
 }
 
-/* GRID TIZIMI */
+/* ==========================================
+   3. PREMIUM KARTALAR GRIDI (CHOTKI 3D + NEON)
+   ========================================== */
 .elite-projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 40px;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
-/* ELITE CARD */
+/* Kartalar (About'dagi bloklar kabi to'q va shaffof) */
 .elite-card {
-  background: rgba(30, 41, 59, 0.5);
+  background: rgba(11, 19, 38, 0.6) !important;
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
   overflow: hidden;
-  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
 
+/* Hover bo'lgandagi super effektlar */
 .elite-card:hover {
-  transform: translateY(-12px);
-  border-color: #00f2ff;
-  box-shadow: 0 20px 50px rgba(0, 242, 255, 0.1);
-  background: rgba(30, 41, 59, 0.8);
+  transform: translateY(-12px) scale(1.02);
+  border-color: var(--project-glow);
+  /* Pastga soya va orqaga chiroyli neon nur taratish */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+              0 0 30px rgba(255, 255, 255, 0.03),
+              0 0 25px var(--project-glow);
 }
 
 /* RASM QISMI */
@@ -58,24 +112,30 @@
   position: relative;
   height: 220px;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .elite-img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.5s;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.elite-card:hover .elite-img-container img {
+  transform: scale(1.08);
+}
+
+/* Rasm ustidagi parda */
 .elite-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(2, 6, 23, 0.7);
+  background: rgba(2, 6, 23, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: 0.3s;
+  transition: opacity 0.3s ease;
   backdrop-filter: blur(4px);
 }
 
@@ -84,53 +144,65 @@
 }
 
 .visit-link {
-  color: #00f2ff;
+  color: white;
   text-decoration: none;
   font-weight: 700;
-  border: 2px solid #00f2ff;
-  padding: 10px 20px;
+  background: var(--project-glow);
+  padding: 12px 24px;
   border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
 }
 
 .visit-link:hover {
-  background: #00f2ff;
-  color: #000;
+  transform: scale(1.05);
+  filter: brightness(1.15);
 }
 
-/* DETALLAR QISMI */
+/* DETALLAR (MATNLAR) */
 .elite-details {
-  padding: 30px;
+  padding: 28px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .pro-category {
-  color: #00f2ff;
-  font-size: 0.8rem;
-  font-weight: 700;
+  color: var(--project-glow);
+  font-size: 0.78rem;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
   margin-bottom: 10px;
   display: block;
+  filter: brightness(1.2);
 }
 
 .elite-details h3 {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-top: 0;
   margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.elite-card:hover .elite-details h3 {
+  color: var(--project-glow);
+  filter: brightness(1.3);
+  transition: color 0.3s ease;
 }
 
 .elite-details p {
   color: #94a3b8;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-/* TECH BADGES */
+/* TEXNOLOGIYALAR */
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -139,96 +211,68 @@
 }
 
 .tech-badge {
-  background: rgba(0, 242, 255, 0.1);
-  color: #00f2ff;
-  padding: 4px 12px;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 5px 12px;
+  border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-/* FOOTER BUTTONS */
+/* PASTKI TUGMALAR */
 .card-footer {
   margin-top: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 14px;
 }
 
 .footer-btn {
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: 700;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 0.9rem;
-  transition: 0.3s;
+  font-size: 0.92rem;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .footer-btn.live {
-  background: #00f2ff;
-  color: #020617;
+  background: var(--project-glow);
+  color: white;
   border: none;
 }
 
 .footer-btn.code {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
 }
 
 .footer-btn:hover {
   transform: translateY(-3px);
-  filter: brightness(1.1);
 }
 
-/* RESPONSIVE */
-@media (max-width: 480px) {
-  .elite-projects-grid { grid-template-columns: 1fr; }
-  .main-title { font-size: 2.2rem; }
-}/* YouTube loyihasi uchun maxsus neon effekt (ixtiyoriy) */
-.elite-card:nth-child(6):hover {
-  border-color: #ff0000;
-  box-shadow: 0 20px 50px rgba(255, 0, 0, 0.2);
+.footer-btn.live:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.elite-card:nth-child(6) .pro-category {
-  color: #ff0000;
-}
-
-.elite-card:nth-child(6) .footer-btn.live {
-  background: #ff0000;
+.footer-btn.code:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
   color: white;
 }
 
-.elite-card:nth-child(6) .tech-badge {
-  background: rgba(255, 0, 0, 0.1);
-  color: #ff0000;
-}
-.background-video {
-  position: fixed; /* MUHIM: Skrol bo'lganda video siljimasligi kerak */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh; /* Har doim ko'rinib turgan ekran balandligida bo'ladi */
-  object-fit: cover;
-  z-index: -2; /* Hamma narsadan orqada */
-}
-
-.video-overlay-projects {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7); /* Videoni qorong'ulatish */
-  z-index: -1;
-}.r, .portfolio-premium-wrapper {
-  background: transparent !important; /* Fon rangini butunlay yo'qotamiz */
-  min-height: 100vh;
-  display: block; /* Flex bo'lsa, ba'zida balandlikda xato berishi mumkin */
+/* RESPONSIVE (MEDIA QUERIES) */
+@media (max-width: 768px) {
+  .main-title { font-size: 2.4rem; }
+  .subtitle { font-size: 1rem; }
+  .elite-projects-grid { grid-template-columns: 1fr; gap: 28px; }
+  .portfolio-premium-wrapper { padding: 90px 4% 40px 4%; }
 }

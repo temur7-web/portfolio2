@@ -18,17 +18,12 @@ function Contact() {
 
   return (
     <div className="contact-section-wrapper">
-      <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className="background-video"
-        >
-          <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
-          Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
-        </video>
+      <video autoPlay muted loop playsInline className="background-video">
+        <source src="blue-abstract-hexagon.1920x1080.mp4" type="video/mp4" />
+        Sizning brauzeringiz videoni qo'llab-quvvatlamaydi.
+      </video>
       <div className="contact-glow-overlay"></div>
+      
       <div className="contact-main-container">
         <h2 className="contact-title">Muloqot Nuqtasi</h2>
         <p className="contact-subtitle">
@@ -39,7 +34,7 @@ function Contact() {
           {/* Chap taraf: Ma'lumotlar */}
           <div className="info-glass-card">
             <h3>Aloqa Ma'lumotlari</h3>
-            <p>Siz bilan hamkorlik qilishdan doim mamnunman.</p>
+            <p className="info-desc">Siz bilan hamkorlik qilishdan doim mamnunman.</p>
             
             <div className="detail-list">
               <div className="detail-item">
@@ -82,7 +77,7 @@ function Contact() {
                 <textarea placeholder="Xabaringizni shu yerda qoldiring..." value={message} onChange={(e) => setMessage(e.target.value)} required />
               </div>
               <button type="submit" className="neo-submit-btn">
-                Xabarni Yuborish <FaTelegramPlane style={{marginLeft: '10px'}}/>
+                Xabarni Yuborish <FaTelegramPlane style={{marginLeft: '10px', fontSize: '1.2rem'}}/>
               </button>
             </form>
           </div>
